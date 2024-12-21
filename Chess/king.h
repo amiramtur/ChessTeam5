@@ -8,5 +8,5 @@ protected:
 	int _color; 
 public:
 	King(int color); 
-	std::string move(std::string board, Point sp, Point dp); //sp = source point, dp = distanation point
+	virtual std::string move(std::string board, Point sp, Point dp); // sp = source point, dp = distanation point
 };
