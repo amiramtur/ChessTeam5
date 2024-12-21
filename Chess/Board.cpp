@@ -1,5 +1,3 @@
-#pragma once
-
 #include "Board.h"
 #include "Player.h"
 
@@ -23,10 +21,15 @@ Board::~Board()
 	~Player(this->_player2); // doesn't need fixing, add a Player destructor
 }
 
-// getter
+// getters
 int Board::get_turn()
 {
 	return this->_turn;
+}
+
+static std::string Board::get_board()
+{
+	return this->_board;
 }
 
 // other

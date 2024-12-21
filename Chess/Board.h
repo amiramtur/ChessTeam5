@@ -1,6 +1,7 @@
 #pragma once
-#include <string>
+
 #include "Player.h"
+#include <string>
 
 class Board
 {
@@ -16,8 +17,9 @@ public:
 	// destructor
 	~Board();
 
-	// getter
+	// getters
 	int get_turn();
+	static std::string get_board();
 
 	// other
 	std::string update_board(std::string board);
