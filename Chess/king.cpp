@@ -1,76 +1,40 @@
 #include "king.h"
 #include <iostream>
+#include <cstdlib> //for "abs()"
 
-King::King(int color) : Piece(color)
+King::King(int color) 
 {
+	this->_color = color; 
 }
 
-//check if phisicaly the piece able to move
-int King::left_step(std::string board, int cord) const
+std::string King::move(std::string board, Point sp, Point dp)
 {
-	if (!(this->is_my_color(board[cord])))
+	char sPiece = Point::get_piece(sp, board);
+	char dPiece = Point::get_piece(dp, board);
+	int dx = dp.get_x() - sp.get_x(), dy = dp.get_y() - sp.get_y(); //d = distance 
+	
+
+	if (sPiece != 'K' && sPiece != 'k' || !(Point::is_my_color(sPiece, this->_color))) //if the source is not ok 
 	{
-		return 2; 
+		throw 2; //code 2  
 	}
-	if (cord % 8 == 0)
+	else if (Point::is_my_color(dPiece, this->_color)) //if there is piece with my color in dp 
 	{
-		return 5; //code 5 = there is not index in that place
+		throw 3; //code 3  
 	}
-	if (this->is_my_color(board[cord - 1]))
+	else if (dx == 0 && dy == 0) //if it is the same points
 	{
-		return 3; 
+		throw 7; // code 7  
 	}
-	return 0;
+	else if (std::abs(dx) > 1 || std::abs(dy) > 1) //if it not matches the king's movements
+	{
+		throw 6; //code 6  
+	}
+	else if (dPiece == 'k' || dPiece == 'K')
+	{
+		throw 8; //code 8
+	}
+	
+	return Point::replace(sp, dp, board); 
 }
 
-
-int King::right_step(std::string board, int cord) const
-{
-	if (!(this->is_my_color(board[cord])))
-	{
-		return 2;
-	}
-	if ((cord + 1) % 8 == 0)
-	{
-		return 5; //code 5 = there is not index in that place
-	}
-	if (this->is_my_color(board[cord + 1]))
-	{
-		return 3;
-	}
-	return 0;
-}
-
-int King::back_step(std::string board, int cord) const
-{
-	if (!(this->is_my_color(board[cord])))
-	{
-		return 2;
-	}
-	if ((cord -8) < 0)
-	{
-		return 5; //code 5 = there is not index in that place
-	}
-	if (this->is_my_color(board[cord -8]))
-	{
-		return 3;
-	}
-	return 0;
-}
-
-int King::forward_step(std::string board, int cord) const
-{
-	if (!(this->is_my_color(board[cord])))
-	{
-		return 2;
-	}
-	if ((cord + 8) < 63)
-	{
-		return 5; //code 5 = there is not index in that place
-	}
-	if (this->is_my_color(board[cord + 8]))
-	{
-		return 3;
-	}
-	return 0;
-}

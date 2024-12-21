@@ -1,14 +1,12 @@
 #pragma once
 #include <string>
-#include "Piece.h"
+#include "Point.h"
 
-class King : Piece
+class King 
 {
+protected: 
+	int _color; 
 public:
 	King(int color); 
-	int left_step(std::string board, int cord) const; //return code
-	int right_step(std::string board, int cord) const; //return code
-	int back_step(std::string board, int cord) const;
-	int forward_step(std::string board, int cord) const;
-
+	std::string move(std::string board, Point sp, Point dp); //sp = source point, dp = distanation point
 };
