@@ -1,12 +1,11 @@
 #pragma once
 
 #include <string>
-#include "King.h"
+#include "king.h"
 
-class Rook : King
+class Bishop :King
 {
-public:
-	Rook(int color);
+public: 
+	Bishop(int color);
 	virtual std::string move(std::string board, Point sp, Point dp) override; //sp = source point, dp = distanation point
-
 };
