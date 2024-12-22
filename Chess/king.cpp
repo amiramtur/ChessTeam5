@@ -1,6 +1,5 @@
 #include "king.h"
-#include <iostream>
-#include <cstdlib> //for "abs()"
+#include <cstdlib> // for "abs()"
 
 King::King(int color) 
 {
@@ -12,7 +11,6 @@ std::string King::move(std::string board, Point sp, Point dp)
 	char sPiece = Point::get_piece(sp, board), dPiece = Point::get_piece(dp, board);
 	int dx = dp.get_x() - sp.get_x(), dy = dp.get_y() - sp.get_y(); // d = distance 
 	
-
 	if (sPiece != 'K' && sPiece != 'k' || !(Point::is_my_color(sPiece, this->_color))) // if the source is not ok 
 	{
 		throw 2; // code 2  

@@ -1,17 +1,19 @@
-#include "Knight.h"
+#include "Pawn.h"
+#include "Point.h"
 #include <cstdlib> // for "abs()"
 
-Knight::Knight(int color) : King(color)
+Pawn::Pawn(int color) : King(color)
 {
 	this->_color = color;
+	this->_start = true;
 }
 
-std::string Knight::move(std::string board, Point sp, Point dp)
+std::string Pawn::move(std::string board, Point sp, Point dp)
 {
 	char sPiece = Point::get_piece(sp, board), dPiece = Point::get_piece(dp, board);
 	int dx = dp.get_x() - sp.get_x(), dy = dp.get_y() - sp.get_y(); // d = distance 
 
-	if (sPiece != 'N' && sPiece != 'n' || !(Point::is_my_color(sPiece, this->_color))) // if the source is not ok 
+	if (sPiece != 'P' && sPiece != 'p' || !(Point::is_my_color(sPiece, this->_color))) // if the source is not ok 
 	{
 		throw 2; //code 2  
 	}
@@ -23,7 +25,8 @@ std::string Knight::move(std::string board, Point sp, Point dp)
 	{
 		throw 7; // code 7  
 	}
-	else if (!(std::abs(dx) == 2 && std::abs(dy) == 1) && !(std::abs(dx) == 1 && std::abs(dy) == 2)) // invalid moves - knight
+	else if ((this->_start == true && std::abs(dy) > 2) || (this->_start == false && std::abs(dy) > 1) ||
+			 (std::abs(dx) > 1 && dp.get_piece(dp, board) == '#') || dy < 1)  // invalid moves - pawn
 	{
 		throw 6; // code 6  
 	}
@@ -32,5 +35,9 @@ std::string Knight::move(std::string board, Point sp, Point dp)
 		throw 8; // code 8, needs fixing
 	}
 
+	if (is_starting())
+	{
+		this->_start = false;
+	}
 	return Point::replace(sp, dp, board);
 }
