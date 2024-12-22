@@ -5,8 +5,8 @@
 class King 
 {
 protected: 
-	int _color; 
+	int _color; // 0 - white 1 - black 
 public:
 	King(int color); 
-	virtual std::string move(std::string board, Point sp, Point dp); // sp = source point, dp = distanation point
+	virtual std::string move(std::string board, Point sp, Point dp); //sp = source point, dp = distanation point
 };

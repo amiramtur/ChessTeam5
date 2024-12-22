@@ -14,12 +14,12 @@ Point::~Point()
 	this->_y = -1; 
 }
 
-int Point::get_x()
+int Point::get_x() const
 {
 	return this->_x; 
 }
 
-int Point::get_y()
+int Point::get_y() const
 {
 	return this->_y; 
 }
@@ -32,6 +32,11 @@ void Point::set_x(int x)
 void Point::set_y(int y)
 {
 	this->_y = y; 
+}
+
+bool Point::operator!=(const Point& other) const
+{
+	return (other.get_x() != this->_x || other.get_y() != this->_y);
 }
 
 int Point::get_index(Point p)
@@ -60,7 +65,7 @@ char Point::get_piece(Point p, std::string board)
 
 bool Point::is_my_color(char piece, int color)
 {
-	//
+	//0 - white 1 - black 
 	if (color == 0) //if the color is white (big letters)
 	{
 		if (isupper(piece))
