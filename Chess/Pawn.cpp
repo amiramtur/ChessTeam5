@@ -26,7 +26,7 @@ std::string Pawn::move(std::string board, Point sp, Point dp)
 		throw 7; // code 7  
 	}
 	else if ((this->_start == true && std::abs(dy) > 2) || (this->_start == false && std::abs(dy) > 1) ||
-			 (std::abs(dx) > 1 && dp.get_piece(dp, board) == '#') || dy < 1)  // invalid moves - pawn
+			 (std::abs(dx) > 1 && dPiece == '#') || dy < 1)  // invalid moves - pawn
 	{
 		throw 6; // code 6  
 	}
@@ -35,9 +35,7 @@ std::string Pawn::move(std::string board, Point sp, Point dp)
 		throw 8; // code 8, needs fixing
 	}
 
-	if (is_starting())
-	{
-		this->_start = false;
-	}
+
+	this->_start = false;
 	return Point::replace(sp, dp, board);
 }

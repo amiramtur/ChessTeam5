@@ -29,7 +29,7 @@ std::string Knight::move(std::string board, Point sp, Point dp)
 	}
 	else if (dPiece == 'k' || dPiece == 'K')
 	{
-		throw 8; // code 8, needs fixing
+		throw 8; // code 8
 	}
 
 	return Point::replace(sp, dp, board);
