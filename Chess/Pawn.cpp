@@ -12,6 +12,7 @@ std::string Pawn::move(std::string board, Point sp, Point dp)
 {
 	char sPiece = Point::get_piece(sp, board), dPiece = Point::get_piece(dp, board);
 	int dx = dp.get_x() - sp.get_x(), dy = dp.get_y() - sp.get_y(); // d = distance 
+	bool start = sp.get_y() == 2; 
 
 	if (sPiece != 'P' && sPiece != 'p' || !(Point::is_my_color(sPiece, this->_color))) // if the source is not ok 
 	{
@@ -25,7 +26,7 @@ std::string Pawn::move(std::string board, Point sp, Point dp)
 	{
 		throw 7; // code 7  
 	}
-	else if ((this->_start == true && std::abs(dy) > 2) || (this->_start == false && std::abs(dy) > 1) ||
+	else if ((start == true && std::abs(dy) > 2) || (start == false && std::abs(dy) > 1) ||
 			 (std::abs(dx) > 1 && dPiece == '#') || dy < 1)  // invalid moves - pawn
 	{
 		throw 6; // code 6  
@@ -36,6 +37,5 @@ std::string Pawn::move(std::string board, Point sp, Point dp)
 	}
 
 
-	this->_start = false;
 	return Point::replace(sp, dp, board);
 }
