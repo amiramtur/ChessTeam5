@@ -9,5 +9,7 @@ private:
 public: 
 	Empty(Point* srcp);
 	~Empty();
+
+	virtual char get_type() override;
 	virtual void move(Piece* board, Point& dstp); 
 };

@@ -11,6 +11,11 @@ Empty::~Empty()
 	delete(this->_srcp);
 }
 
+char Empty::get_type()
+{
+	return '#';
+}
+
 void Empty::move(Piece* board, Point& dstp)
 {
 	throw 2; 

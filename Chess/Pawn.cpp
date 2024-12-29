@@ -1,6 +1,8 @@
 #include "Pawn.h"
 #include <cstdlib> // for "abs()"
 
+#define WHITE 0
+
 Pawn::Pawn(const int color, Point* sp) : Piece()
 {
 	this->_color = color;
@@ -11,6 +13,15 @@ Pawn::~Pawn()
 {
 	this->_color = -1; //no value 
 	delete(this->_sp); 
+}
+
+char Pawn::get_type()
+{
+	if (this->_color == WHITE)
+	{
+		return 'P';
+	}
+	return 'p';
 }
 
 std::string Pawn::move(Piece* board, Point& dp)

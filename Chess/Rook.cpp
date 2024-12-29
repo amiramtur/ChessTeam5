@@ -1,8 +1,20 @@
 #include "Rook.h"
 #include <iostream>
 
+#define WHITE 0
+
 Rook::Rook(int color) : Piece()
 {
+	this->_color = color;
+}
+
+char Rook::get_type()
+{
+	if (this->_color == WHITE)
+	{
+		return 'R';
+	}
+	return 'r';
 }
 
 std::string Rook::move(Point& board, Point& dp)

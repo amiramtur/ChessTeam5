@@ -9,5 +9,6 @@ protected:
 	int _color; // 0 - white 1 - black 
 public:
 	King(int color); 
-	virtual std::string move(Point& board, Point& dp) override; //sp = source point, dp = distanation point
+	virtual char get_type() override;
+	virtual Piece* move(Piece* board, Point& srcp, Point& dstp) override; // dstp = distanation point
 };

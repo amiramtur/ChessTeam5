@@ -1,9 +1,20 @@
 #include "Knight.h"
 #include <cstdlib> // for "abs()"
 
+#define WHITE 0
+
 Knight::Knight(int color) : King(color)
 {
 	this->_color = color;
+}
+
+char Knight::get_type()
+{
+	if (this->_color == WHITE)
+	{
+		return 'N';
+	}
+	return 'n';
 }
 
 std::string Knight::move(std::string board, Point sp, Point dp)

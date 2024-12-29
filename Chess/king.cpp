@@ -2,23 +2,33 @@
 #include <iostream>
 #include <cstdlib> //for "abs()"
 
+#define WHITE 0
+
 King::King(int color) 
 {
 	this->_color = color; 
 }
 
-std::string King::move(std::string& board, Point& dp)
+char King::get_type()
 {
-	char sPiece = Point::get_piece(this->_sp, board);
-	char dPiece = Point::get_piece(dp, board);
-	int dx = dp.get_x() - sp.get_x(), dy = dp.get_y() - sp.get_y(); //d = distance 
-	
+	if (this->_color == WHITE)
+	{
+		return 'K';
+	}
+	return 'k';
+}
 
-	if (sPiece != 'K' && sPiece != 'k' || !(Point::is_my_color(sPiece, this->_color))) //if the source is not ok 
+Piece* King::move(Piece* board, Point& srcp, Point& dstp)
+{
+	Piece* sPiece = Point::get_piece(srcp, board);
+	Piece* dPiece = Point::get_piece(dstp, board);
+	int dx = dstp.get_x() - srcp.get_x(), dy = dstp.get_y() - srcp.get_y(); //d = distance 
+	
+	if ((sPiece->get_type() != 'K' && sPiece->get_type() != 'k') || !(Point::is_my_color(sPiece->get_type(), this->_color))) // if the source is not ok 
 	{
 		throw 2; //code 2  
 	}
-	else if (Point::is_my_color(dPiece, this->_color)) //if there is piece with my color in dp 
+	else if (Point::is_my_color(dPiece->get_type(), this->_color)) //if there is piece with my color in dp 
 	{
 		throw 3; //code 3  
 	}
@@ -30,11 +40,11 @@ std::string King::move(std::string& board, Point& dp)
 	{
 		throw 6; //code 6  
 	}
-	else if (dPiece == 'k' || dPiece == 'K')
+	else if (dPiece->get_type() == 'K')
 	{
 		throw 8; //code 8
 	}
 	
-	return Point::replace(sp, dp, board); 
+	return Point::replace(srcp, dstp, board); 
 }
 

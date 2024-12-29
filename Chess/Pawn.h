@@ -10,7 +10,9 @@ private:
 	Point* _sp; //source point
 public:
 	Pawn(const int color, Point* sp);
-	~Pawn(); 
+	~Pawn();
+
+	virtual char get_type() override;
 	virtual std::string move(Piece* board, Point& dp) override; // sp = source point, dp = distanation point
 };
 

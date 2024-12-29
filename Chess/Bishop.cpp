@@ -1,8 +1,19 @@
 #include "Bishop.h"
 
+#define WHITE 0
+
 Bishop::Bishop(const int color, Point* sp) : Piece(){
 	this->_color = color; 
 	this->_sp = sp; 
+}
+
+char Bishop::get_type()
+{
+	if (this->_color == WHITE)
+	{
+		return 'B';
+	}
+	return 'b';
 }
 
 std::string Bishop::move(std::string& board, Point& dp)
