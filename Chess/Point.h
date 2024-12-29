@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Piece.h"
 #include <string>
 
 class Point
@@ -18,7 +19,7 @@ public:
 
 	bool operator!=(const Point& other) const; 
 	static int get_index(Point p);
-	static std::string replace(Point sp, Point dp, std::string board); 
+	static Piece* replace(Point sp, Point dp, Piece* board); 
 	static char get_piece(Point p, std::string board); 
 	static bool is_my_color(char piece, int color); 
 };

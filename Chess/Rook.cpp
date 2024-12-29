@@ -5,7 +5,7 @@ Rook::Rook(int color) : Piece()
 {
 }
 
-std::string Rook::move(std::string& board, Point& dp)
+std::string Rook::move(Point& board, Point& dp)
 {
 	char dPiece = Point::get_piece(dp, board);
 	int dx = dp.get_x() - this->_sp->get_x(), dy = dp.get_y() - this->_sp->get_y(); //d = distance 

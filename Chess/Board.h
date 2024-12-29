@@ -10,7 +10,7 @@
 class Board
 {
 private:
-	Piece* _board;
+	Piece* _board; 
 	int _turn; //white - 0 | black - 1
 	Player _player1(int color = WHITE);
 	Player _player2(int color = BLACK);

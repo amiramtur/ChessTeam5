@@ -48,7 +48,7 @@ int Point::get_index(Point p)
 	return i;
 }
 
-std::string Point::replace(Point sp, Point dp, std::string board)
+Piece* Point::replace(Point sp, Point dp, Piece* board)
 {
 	int si = Point::get_index(sp), di = Point::get_index(dp); 
 

@@ -24,3 +24,5 @@ bool Piece::first_check(const std::string& board, const Point& sp, const Point& 
 	}
 	return false; 
 }
+
+
