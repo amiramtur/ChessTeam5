@@ -5,7 +5,7 @@
 Point::Point(std::string cords)
 {
 	this->_x = (int)cords[0]; 
-	this->_y = (int)cords[2]; 
+	this->_y = (int)cords[1]; 
 }
 
 Point::~Point()

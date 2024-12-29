@@ -19,7 +19,7 @@ public:
 
 	// getters
 	int get_turn();
-	static std::string get_board();
+	std::string get_board();
 
 	// other
 	std::string update_board(std::string board);

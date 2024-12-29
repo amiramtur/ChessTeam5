@@ -7,27 +7,14 @@ Rook::Rook(int color) : King(color)
 
 std::string Rook::move(std::string board, Point sp, Point dp)
 {
-	char sPiece = Point::get_piece(sp, board);
 	char dPiece = Point::get_piece(dp, board);
 	int dx = dp.get_x() - sp.get_x(), dy = dp.get_y() - sp.get_y(); //d = distance 
 
 	Point temp = sp; 
 
-	if (sPiece != 'R' && sPiece != 'r' || !(Point::is_my_color(sPiece, this->_color))) //if the source is not ok 
-	{
-		throw 2; //code 2  
-	}
-	else if (Point::is_my_color(dPiece, this->_color)) //if there is piece with my color in dp 
-	{
-		throw 3; //code 3  
-	}
-	else if (dx == 0 && dy == 0) //if it is the same points
-	{
-		throw 7; // code 7  
-	}
 	else if (std::abs(dx) != 0 && std::abs(dy) != 0) //if it not matches the rook's movements
 	{
-		throw 6; //code 6  
+			throw 6; //code 6  
 	}
 	else if (dPiece == 'k' || dPiece == 'K')
 	{

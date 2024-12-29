@@ -3,7 +3,7 @@
 #include <string>
 #include "king.h"
 
-class Bishop :King
+class Bishop : virtual public King
 {
 public: 
 	Bishop(int color);

@@ -27,7 +27,7 @@ int Board::get_turn()
 	return this->_turn;
 }
 
-static std::string Board::get_board()
+std::string Board::get_board()
 {
 	return this->_board;
 }
