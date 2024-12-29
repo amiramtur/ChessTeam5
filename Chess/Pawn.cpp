@@ -20,17 +20,16 @@ std::string Pawn::move(std::string& board, Point& dp)
 	bool start = this->_sp->get_y() == 2;
 
 	
-	if (Piece::first_check(board, *this->_sp, dp, this->_color))
+	if (Piece::first_check(board, *this->_sp, dp, this->_color)){
+	}
+	else if ((start == true && std::abs(dy) > 2) || (start == false && std::abs(dy) > 1) ||
+		(std::abs(dx) > 1 && dPiece == '#') || dy < 1)  // invalid moves - pawn
 	{
-		if ((start == true && std::abs(dy) > 2) || (start == false && std::abs(dy) > 1) ||
-			(std::abs(dx) > 1 && dPiece == '#') || dy < 1)  // invalid moves - pawn
-		{
-			throw 6; // code 6
-		}
-		else if (dPiece == 'k' || dPiece == 'K')
-		{
-			throw 8; // code 8, needs fixing
-		}
+		throw 6; // code 6
+	}
+	else if (dPiece == 'k' || dPiece == 'K')
+	{
+		throw 8; // code 8, needs fixing
 	}
 
 	return Point::replace(*this->_sp, dp, board);
