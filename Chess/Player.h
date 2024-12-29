@@ -6,18 +6,18 @@
 class Player
 {
 private: 
-	King _king;
+	/*King _king;
 	Rook _rook;
 	Knight _knight;
 	Pawn _pawn;
 	Queen _queen;
-	Bishop _bishop;
+	Bishop _bishop;*/
 protected: 
 	int _color;
 	std::string _board;
 
 public:
-	// constructor 
+	// constructor
 	Player(int color);
 
 	// destructor
