@@ -1,7 +1,7 @@
 #include "Board.h"
 #include "Player.h"
 
-#define PieceString "RNBQKBNRPPPPPPPP################################pppppppprnbkqbnr"
+//#define PieceString "RNBQKBNRPPPPPPPP################################pppppppprnbkqbnr"
 
 
 // constructor 

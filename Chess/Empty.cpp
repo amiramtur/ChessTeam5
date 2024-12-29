@@ -1,17 +1,17 @@
 #include "Empty.h"
 #include <iostream>
 
-Empty::Empty(Point* sp) : Piece()
+Empty::Empty(Point* srcp) : Piece()
 {
-	this->_sp = sp; 
+	this->_srcp = srcp;
 }
 
 Empty::~Empty()
 {
-	delete(this->_sp); 
+	delete(this->_srcp);
 }
 
-void Empty::move(Piece* board, Point& dp)
+void Empty::move(Piece* board, Point& dstp)
 {
 	throw 2; 
 }

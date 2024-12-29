@@ -5,9 +5,9 @@
 
 class Empty : public Piece {
 private: 
-	Point* _sp; 
+	Point* _srcp; 
 public: 
-	Empty(Point* sp);
+	Empty(Point* srcp);
 	~Empty();
-	virtual void move(Piece* board, Point& dp); 
+	virtual void move(Piece* board, Point& dstp); 
 };

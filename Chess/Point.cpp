@@ -1,17 +1,19 @@
 #include "Point.h"
+#include "Empty.h"
 
+#define WHITE 0
+//#define BLACK 1
 
-
-Point::Point(std::string cords)
+Point::Point(std::string coords)
 {
-	this->_x = (int)cords[0]; 
-	this->_y = (int)cords[1]; 
+	this->_x = (int)coords[0]; 
+	this->_y = (int)coords[1] - '0'; // converting ascii value to number 
 }
 
 Point::~Point()
 {
-	this->_x = -1; 
-	this->_y = -1; 
+	this->_x = -1;
+	this->_y = -1;
 }
 
 int Point::get_x() const
@@ -50,30 +52,29 @@ int Point::get_index(Point p)
 
 Piece* Point::replace(Point sp, Point dp, Piece* board)
 {
-	int si = Point::get_index(sp), di = Point::get_index(dp); 
+	int srci = Point::get_index(sp), dsti = Point::get_index(dp); 
 
-	board[di] = board[si]; 
-	board[si] = '#'; 
+	board[dsti] = board[srci]; 
+	board[srci] = Empty(srci); // help :(
 
 	return board; 
 }
 
-char Point::get_piece(Point p, std::string board)
+Piece* Point::get_piece(Point p, Piece* board) // needs checking
 { 
-	return board[Point::get_index(p)];
+	return &board[Point::get_index(p)];
 }
 
-bool Point::is_my_color(char piece, int color)
+bool Point::is_my_color(char piece, int my_color)
 {
-	//0 - white 1 - black 
-	if (color == 0) //if the color is white (big letters)
+	if (my_color == WHITE) // - uppercase
 	{
 		if (isupper(piece))
 		{
 			return true;
 		}
 	}
-	else
+	else // black - lowercase
 	{
 		if (!(isupper(piece)))
 		{
