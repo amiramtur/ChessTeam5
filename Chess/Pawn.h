@@ -11,6 +11,6 @@ private:
 public:
 	Pawn(const int color, Point* sp);
 	~Pawn(); 
-	virtual std::string move(std::string& board, Point& dp) override; // sp = source point, dp = distanation point
+	virtual std::string move(Point& board, Point& dp) override; // sp = source point, dp = distanation point
 };
 

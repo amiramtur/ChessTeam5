@@ -4,15 +4,18 @@
 #include <string>
 
 #define BOARD_LEN 64
+#define WHITE 0
+#define BLACK 1
+
 class Board
 {
 private:
-	Piece _board[BOARD_LEN]; // BIG LETTER - WHITE | small letter - black 
+	Piece* _board;
 	int _turn; //white - 0 | black - 1
-	Player _player1;
-	Player _player2;
+	Player _player1(int color = WHITE);
+	Player _player2(int color = BLACK);
 public:
-	// constructor 
+	// constructor
 	Board();
 
 	// destructor
@@ -20,8 +23,8 @@ public:
 
 	// getters
 	int get_turn();
-	std::string get_board();
+	Piece* get_board();
 
 	// other
-	std::string update_board(std::string board);
+	void update_board(Piece* board);
 };

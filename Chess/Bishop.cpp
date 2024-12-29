@@ -1,10 +1,10 @@
-//#include "Bishop.h"
-//
-//Bishop::Bishop(int color) :King(color) 
-//{
-//}
-//
-//std::string Bishop::move(std::string board, Point sp, Point dp)
+#include "Bishop.h"
+
+Bishop::Bishop(int color) :King(color) 
+{
+}
+
+//std::string Bishop::move(Point& board, Point& dp)
 //{
 //	char sPiece = Point::get_piece(sp, board);
 //	char dPiece = Point::get_piece(dp, board);
@@ -87,4 +87,4 @@
 //
 //	return Point::replace(sp, dp, board);
 //}
-//
+
