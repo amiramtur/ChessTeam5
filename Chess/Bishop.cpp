@@ -1,7 +1,6 @@
 #include "Bishop.h"
 
-<<<<<<< HEAD
-Bishop::Bishop(const int color, Point* sp) :Piece(){
+Bishop::Bishop(const int color, Point* sp) : Piece(){
 	this->_color = color; 
 	this->_sp = sp; 
 }

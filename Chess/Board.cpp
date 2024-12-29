@@ -8,8 +8,8 @@
 Board::Board()
 {
 	this->_board[BOARD_LEN];
-	this->_player1 = Player(0); // doesn't need fixing, add a parameter in Player's constructor
-	this->_player2 = Player(1); // doesn't need fixing, add a parameter in Player's constructor
+	this->_player1 = Player(0);
+	this->_player2 = Player(1);
 	this->_turn = 1;
 }
 
