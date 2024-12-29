@@ -45,7 +45,11 @@
     <ClCompile Include="Piece.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="Empty.cpp">
+=======
+    <ClCompile Include="main.cpp">
+>>>>>>> 7b3c23ec0b961e7f76ebea8bdb025ec035cbf4c2
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
