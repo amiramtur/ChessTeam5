@@ -6,13 +6,13 @@
 Pawn::Pawn(const int color, Point* sp) : Piece()
 {
 	this->_color = color;
-	this->_sp = sp; 
+	this->_srcp = sp; 
 }
 
 Pawn::~Pawn()
 {
 	this->_color = -1; //no value 
-	delete(this->_sp); 
+	delete(this->_srcp); 
 }
 
 char Pawn::get_type()
@@ -24,25 +24,26 @@ char Pawn::get_type()
 	return 'p';
 }
 
-std::string Pawn::move(Piece* board, Point& dp)
+void Pawn::move(const std::vector<Piece*>& board, const Point& dstp)
 {
-	char sPiece = Point::get_piece(*this->_sp, board), dPiece = Point::get_piece(dp, board); 
-	int dx = dp.get_x() - this->_sp->get_x(), dy = dp.get_y() - this->_sp->get_y(); // d = distance 
-	bool start = this->_sp->get_y() == 2; 
+	char sPiece = Point::get_piece(*this->_srcp, board), dPiece = Point::get_piece(dstp, board);
+	int dx = dstp.get_x() - this->_srcp->get_x(), dy = dstp.get_y() - this->_srcp->get_y(); // d = distance 
+	bool start = this->_srcp->get_y() == 2; 
+	bool isOk = true;
 
-	
-	if (Piece::first_check(board, *this->_sp, dp, this->_color)) 
+	if (Piece::first_check(board, *this->_srcp, dstp, this->_color))
 	{ 
-		if ((start == true && std::abs(dy) > 2) || (start == false && std::abs(dy) > 1) || 
-			(std::abs(dx) > 1 && dPiece == '#') || dy < 1)  // invalid moves - pawn 
-		{
-			throw 6; // code 6
-		}
-		else if (dPiece == 'k' || dPiece == 'K')
-		{
-			throw 8; // code 8, needs fixing
-		}
+		isOk = false;
 	}
-
-	return Point::replace(*this->_sp, dp, board);
+	else if ((start == true && std::abs(dy) > 2) || (start == false && std::abs(dy) > 1) ||
+			(std::abs(dx) > 1 && dPiece == '#') || dy < 1)  // pawn check
+	{
+		isOk = false;
+		throw 6; // code 6
+	}
+	
+	if (isOk)
+	{
+		Point::replace(*Point::get_piece_class(*this->_srcp, board), *Point::get_piece_class(dstp, board), board);
+	}
 }

@@ -21,40 +21,29 @@ char Bishop::get_type()
 	return 'b';
 }
 
-std::vector<Piece*> Bishop::move(std::vector<Piece*> board, Point& dstp)
+void Bishop::move(const std::vector<Piece*>& board, const Point& dstp)
 {
 	char sPiece = Point::get_piece(*this->_srcp, board);
 	char dPiece = Point::get_piece(dstp, board);
-	int dx = dstp.get_x() - this->_srcp->get_x(), dy = dp.get_y() - this->_srcp->get_y(); //d = distance 
+	int dx = dstp.get_x() - this->_srcp->get_x(), dy = dstp.get_y() - this->_srcp->get_y(); //d = distance 
+	bool isOk = true;
 
 	Point temp = *this->_srcp;
-
-	if (sPiece != 'B' && sPiece != 'b' || !(Point::is_my_color(sPiece, this->_color))) //if the source is not ok 
+	if (Piece::first_check(board, *this->_srcp, dstp, this->_color))
 	{
-		throw 2; //code 2  
+		isOk = false;
 	}
-	else if (Point::is_my_color(dPiece, this->_color)) //if there is piece with my color in dp 
+	else if (std::abs(dx) != std::abs(dy)) // bishop check
 	{
-		throw 3; //code 3  
-	}
-	else if (dx == 0 && dy == 0) //if it is the same points
-	{
-		throw 7; // code 7  
-	}
-	else if (std::abs(dx) != std::abs(dy)) //if it not matches the bishop's movements
-	{
+		isOk = false;
 		throw 6; //code 6  
-	}
-	else if (dPiece == 'k' || dPiece == 'K')
-	{
-		throw 8; //code 8
 	}
 	else
 	{
 		//checks if there is a piece in the bishop's way
-		if (dx > 0 && dy > 0) //if the bishop moves right and forward
+		if (dx > 0 && dy > 0) // forward and right
 		{
-			while (temp != dp) //temp is a point
+			while (temp != dstp) //temp is a point
 			{
 				temp.set_x(temp.get_x() + 1);
 				temp.set_y(temp.get_y() + 1);
@@ -64,9 +53,9 @@ std::vector<Piece*> Bishop::move(std::vector<Piece*> board, Point& dstp)
 				}
 			}
 		}
-		else if (dx < 0 && dy > 0) //if the bishop moves left and forward
+		else if (dx < 0 && dy > 0) // forward and left
 		{
-			while (temp != dp) //temp is a point
+			while (temp != dstp) //temp is a point
 			{
 				temp.set_x(temp.get_x() - 1);
 				temp.set_y(temp.get_y() + 1);
@@ -76,9 +65,9 @@ std::vector<Piece*> Bishop::move(std::vector<Piece*> board, Point& dstp)
 				}
 			}
 		}
-		else if (dy < 0 && dx > 0) //if the bishop moves backwards and right
+		else if (dy < 0 && dx > 0) // backwards and right
 		{
-			while (temp != dp) //temp is a point
+			while (temp != dstp) //temp is a point
 			{
 				temp.set_y(temp.get_y() - 1);
 				temp.set_x(temp.get_x() + 1);
@@ -88,9 +77,9 @@ std::vector<Piece*> Bishop::move(std::vector<Piece*> board, Point& dstp)
 				}
 			}
 		}
-		else //if the bishop moves backwards and left
+		else // backwards and left
 		{
-			while (temp != dp) //temp is a point
+			while (temp != dstp) //temp is a point
 			{
 				temp.set_y(temp.get_y() - 1);
 				temp.set_x(temp.get_x() - 1);
@@ -102,7 +91,10 @@ std::vector<Piece*> Bishop::move(std::vector<Piece*> board, Point& dstp)
 		}
 	}
 
-	return Point::replace(*this->_sp, dp, board);
+	if (isOk)
+	{
+		Point::replace(*Point::get_piece_class(*this->_srcp, board), *Point::get_piece_class(dstp, board), board);
+	}
 }
 
 

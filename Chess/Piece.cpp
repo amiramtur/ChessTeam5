@@ -2,9 +2,7 @@
 #include <iostream>
 #include "Point.h"
 
-Piece::Piece()
-{
-}
+Piece::Piece() {}
 
 bool Piece::first_check(const std::vector<Piece*>& board, const Point& sp, const Point& dp, const int color)
 {
@@ -18,9 +16,13 @@ bool Piece::first_check(const std::vector<Piece*>& board, const Point& sp, const
 	{
 		throw 7; // code 7  
 	}
+	else if (dPiece == 'k' || dPiece == 'K')
+	{
+		throw 8; //code 8
+	}
 	else
 	{
-		return false; 
+		return false; // valid (passed the test)
 	}
 	return true; 
 }

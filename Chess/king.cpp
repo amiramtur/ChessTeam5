@@ -17,7 +17,7 @@ King::~King()
 
 Point* King::getPoint() const
 {
-	return this->_srcp; 
+	return this->_srcp;
 }
 
 char King::get_type()
@@ -29,31 +29,26 @@ char King::get_type()
 	return 'k';
 }
 
-std::vector<Piece*> King::move(std::vector<Piece*> board, Point& dstp)
+void King::move(const std::vector<Piece*>& board, const Point& dstp)
 {
-	Piece* sPiece = Point::get_piece(*this->_srcp, board);
-	Piece* dPiece = Point::get_piece(dstp, board);
+	Piece* sPiece = Point::get_piece_class(*this->_srcp, board);
+	Piece* dPiece = Point::get_piece_class(dstp, board);
 	int dx = dstp.get_x() - this->_srcp->get_x(), dy = dstp.get_y() - this->_srcp->get_y(); //d = distance 
-	bool isOk = true; 
+	bool isOk = true;
+
 	if (Piece::first_check(board, *this->_srcp, dstp, this->_color))
 	{
 		isOk = false; 
 	}
-	else if (std::abs(dx) > 1 || std::abs(dy) > 1) //if it not matches the king's movements
+	else if (std::abs(dx) > 1 || std::abs(dy) > 1) // king check
 	{
 		isOk = false; 
 		throw 6; //code 6  
 	}
-	else if (dPiece->get_type() == 'K')
-	{
-		isOk = false; 
-		throw 8; //code 8
-	}
 
 	if (isOk)
 	{
-		return Point::replace(*this->_srcp, dstp, board);
+		Point::replace(*Point::get_piece_class(*this->_srcp, board), *Point::get_piece_class(dstp, board), board);
 	}
-	return board; 
 }
 

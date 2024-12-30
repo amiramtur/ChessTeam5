@@ -13,5 +13,5 @@ public:
 	~King();
 	virtual Point* getPoint() const override; 
 	virtual char get_type() override;
-	virtual std::vector<Piece*> move(std::vector<Piece*> board, Point& dstp) override; // dstp = distanation point
+	virtual void move(const std::vector<Piece*>& board, const Point& dstp) override; // dstp = distanation point
 };

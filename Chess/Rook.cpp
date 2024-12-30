@@ -28,13 +28,14 @@ void Rook::move(std::vector<Piece*>& board, Point& dstp)
 {
 	char dPiece = Point::get_piece(dstp, board);
 	int dx = dstp.get_x() - this->_srcp->get_x(), dy = dstp.get_y() - this->_srcp->get_y(); //d = distance 
-
 	bool isOk = true; 
 	Point temp = *this->_srcp;
-	if (Piece::first_check(board, *this->_srcp, dstp, this->_color)) {
+
+	if (Piece::first_check(board, *this->_srcp, dstp, this->_color))
+	{
 		isOk = false; 
 	}
-	else if (std::abs(dx) != 0 && std::abs(dy) != 0) //if it not matches the rook's movements
+	else if (std::abs(dx) != 0 && std::abs(dy) != 0) // rook check
 	{
 		isOk = false; 
 	 	throw 6; //code 6  
