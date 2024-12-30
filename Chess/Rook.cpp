@@ -3,9 +3,15 @@
 
 #define WHITE 0
 
-Rook::Rook(int color) : Piece()
+Rook::Rook(int color, Point* srcp) : Piece()
 {
 	this->_color = color;
+	this->_srcp = srcp; 
+}
+
+Point* Rook::getPoint() const
+{
+	return this->_srcp; 
 }
 
 char Rook::get_type()
@@ -17,20 +23,24 @@ char Rook::get_type()
 	return 'r';
 }
 
-std::string Rook::move(Point& board, Point& dp)
+void Rook::move(std::vector<Piece*>& board, Point& dstp)
 {
-	char dPiece = Point::get_piece(dp, board);
-	int dx = dp.get_x() - this->_sp->get_x(), dy = dp.get_y() - this->_sp->get_y(); //d = distance 
+	char dPiece = Point::get_piece(dstp, board);
+	int dx = dstp.get_x() - this->_srcp->get_x(), dy = dstp.get_y() - this->_srcp->get_y(); //d = distance 
 
-	Point temp = *this->_sp;
-	if (Piece::first_check(board, *this->_sp, dp, this->_color)) {
+	bool isOk = true; 
+	Point temp = *this->_srcp;
+	if (Piece::first_check(board, *this->_srcp, dstp, this->_color)) {
+		isOk = false; 
 	}
 	else if (std::abs(dx) != 0 && std::abs(dy) != 0) //if it not matches the rook's movements
 	{
+		isOk = false; 
 	 	throw 6; //code 6  
 	}
 	else if (dPiece == 'k' || dPiece == 'K')
 	{
+		isOk = false; 
 		throw 8; //code 8
 	}
 	else
@@ -38,50 +48,57 @@ std::string Rook::move(Point& board, Point& dp)
 		//checks if there is a piece in the rook's way
 		if (dx > 0) //if the rook moves right 
 		{
-			while (temp != dp) //temp is a point
+			while (temp != dstp) //temp is a point
 			{
 				temp.set_x(temp.get_x() + 1);
 				if (Point::get_piece(temp, board) != '#')
 				{
+					isOk = false; 
 					throw 6; //code 6 
 				}
 			}
 		}
 		else if (dx < 0) //if the rook moves left
 		{
-			while (temp != dp) //temp is a point
+			while (temp != dstp) //temp is a point
 			{
 				temp.set_x(temp.get_x() - 1);
 				if (Point::get_piece(temp, board) != '#')
 				{
+					isOk = false; 
 					throw 6; //code 6 
 				}
 			}
 		}
 		else if (dy > 0) //if the rook moves forward
 		{
-			while (temp != dp) //temp is a point
+			while (temp != dstp) //temp is a point
 			{
 				temp.set_y(temp.get_y() + 1);
 				if (Point::get_piece(temp, board) != '#')
 				{
+					isOk = false; 
 					throw 6; //code 6 
 				}
 			}
 		}
 		else //if the rook moves backwards
 		{
-			while (temp != dp) //temp is a point
+			while (temp != dstp) //temp is a point
 			{
 				temp.set_y(temp.get_y() - 1);
 				if (Point::get_piece(temp, board) != '#')
 				{
+					isOk = false; 
 					throw 6; //code 6 
 				}
 			}
 		}
 	}
 
-	return Point::replace(sp, dp, board);
+	if (isOk)
+	{
+		Point::replace( *this, , board);
+	}
 }
 

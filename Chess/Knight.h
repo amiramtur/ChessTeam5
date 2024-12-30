@@ -1,11 +1,15 @@
 #pragma once
-#include "King.h"
+#include "Piece.h"
 
-class Knight : public King
+class Knight : public Piece
 {
+private: 
+	int _color; 
+	Point* _srcp; 
 public:
-	Knight(int color);
+	Knight(int color, Point* srcp);
+	virtual Point* getPoint() const; 
 	virtual char get_type() override;
-	virtual std::string move(Point& board, Point& dp) override; //sp = source point, dp = distanation point
+	virtual std::vector<Piece*> move(std::vector<Piece*> board, Point& dstp) override; //sp = source point, dp = distanation point
 };
 

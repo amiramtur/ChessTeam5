@@ -2,13 +2,14 @@
 #include "Piece.h"
 #include "Player.h"
 #include <string>
+#include <vector>
 
 #define BOARD_LEN 64
 
 class Board
 {
 private:
-	Piece* _board;
+	std::vector<Piece*> _board;
 	int _turn; // white - 0 | black - 1
 	Player _player1;
 	Player _player2;

@@ -6,7 +6,7 @@ Piece::Piece()
 {
 }
 
-bool Piece::first_check(const std::string& board, const Point& sp, const Point& dp, const int color)
+bool Piece::first_check(const std::vector<Piece*>& board, const Point& sp, const Point& dp, const int color)
 {
 	char dPiece = Point::get_piece(dp, board);
 
@@ -20,9 +20,9 @@ bool Piece::first_check(const std::string& board, const Point& sp, const Point& 
 	}
 	else
 	{
-		return true; 
+		return false; 
 	}
-	return false; 
+	return true; 
 }
 
 

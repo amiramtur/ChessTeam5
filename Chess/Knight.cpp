@@ -3,9 +3,16 @@
 
 #define WHITE 0
 
-Knight::Knight(int color) : King(color)
+
+Knight::Knight(int color, Point* srcp) : Piece()
 {
 	this->_color = color;
+	this->_srcp = srcp;
+}
+
+Point* Knight::getPoint() const
+{
+	return this->_srcp; 
 }
 
 char Knight::get_type()
@@ -17,7 +24,7 @@ char Knight::get_type()
 	return 'n';
 }
 
-std::string Knight::move(std::string board, Point sp, Point dp)
+std::vector<Piece*> Knight::move(std::vector<Piece*> board, Point& dstp)
 {
 	char sPiece = Point::get_piece(sp, board), dPiece = Point::get_piece(dp, board);
 	int dx = dp.get_x() - sp.get_x(), dy = dp.get_y() - sp.get_y(); // d = distance 

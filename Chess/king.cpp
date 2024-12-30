@@ -4,9 +4,20 @@
 
 #define WHITE 0
 
-King::King(int color) 
+King::King(int color, Point* srcp) 
 {
 	this->_color = color; 
+	this->_srcp = srcp; 
+}
+
+King::~King()
+{
+	delete this->_srcp; 
+}
+
+Point* King::getPoint() const
+{
+	return this->_srcp; 
 }
 
 char King::get_type()
@@ -18,33 +29,31 @@ char King::get_type()
 	return 'k';
 }
 
-Piece* King::move(Piece* board, Point& srcp, Point& dstp)
+std::vector<Piece*> King::move(std::vector<Piece*> board, Point& dstp)
 {
-	Piece* sPiece = Point::get_piece(srcp, board);
+	Piece* sPiece = Point::get_piece(*this->_srcp, board);
 	Piece* dPiece = Point::get_piece(dstp, board);
-	int dx = dstp.get_x() - srcp.get_x(), dy = dstp.get_y() - srcp.get_y(); //d = distance 
-	
-	if ((sPiece->get_type() != 'K' && sPiece->get_type() != 'k') || !(Point::is_my_color(sPiece->get_type(), this->_color))) // if the source is not ok 
+	int dx = dstp.get_x() - this->_srcp->get_x(), dy = dstp.get_y() - this->_srcp->get_y(); //d = distance 
+	bool isOk = true; 
+	if (Piece::first_check(board, *this->_srcp, dstp, this->_color))
 	{
-		throw 2; //code 2  
-	}
-	else if (Point::is_my_color(dPiece->get_type(), this->_color)) //if there is piece with my color in dp 
-	{
-		throw 3; //code 3  
-	}
-	else if (dx == 0 && dy == 0) //if it is the same points
-	{
-		throw 7; // code 7  
+		isOk = false; 
 	}
 	else if (std::abs(dx) > 1 || std::abs(dy) > 1) //if it not matches the king's movements
 	{
+		isOk = false; 
 		throw 6; //code 6  
 	}
 	else if (dPiece->get_type() == 'K')
 	{
+		isOk = false; 
 		throw 8; //code 8
 	}
-	
-	return Point::replace(srcp, dstp, board); 
+
+	if (isOk)
+	{
+		return Point::replace(*this->_srcp, dstp, board);
+	}
+	return board; 
 }
 

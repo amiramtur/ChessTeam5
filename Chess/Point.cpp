@@ -4,10 +4,16 @@
 #define WHITE 0
 //#define BLACK 1
 
-Point::Point(std::string coords)
+Point::Point(std::string cords)
 {
-	this->_x = (int)coords[0]; 
-	this->_y = (int)coords[1] - '0'; // converting ascii value to number 
+	this->_x = (int)cords[0]; 
+	this->_y = (int)cords[1] - '0'; // converting ascii value to number 
+}
+
+Point::Point(int index)
+{
+	this->_x = (index / 8) + 1; 
+	this->_y = (index % 8) + 1; 
 }
 
 Point::~Point()
@@ -26,12 +32,12 @@ int Point::get_y() const
 	return this->_y; 
 }
 
-void Point::set_x(int x)
+void Point::set_x(const int x)
 {
 	this->_x = x; 
 }
 
-void Point::set_y(int y)
+void Point::set_y(const int y)
 {
 	this->_y = y; 
 }
@@ -41,7 +47,7 @@ bool Point::operator!=(const Point& other) const
 	return (other.get_x() != this->_x || other.get_y() != this->_y);
 }
 
-int Point::get_index(Point p)
+int Point::get_index(const Point& p)
 {
 	int i = 0;
 	i = (p.get_y() - 1) * 8;
@@ -50,22 +56,22 @@ int Point::get_index(Point p)
 	return i;
 }
 
-Piece* Point::replace(Point sp, Point dp, Piece* board)
+void Point::replace(const Piece& srcp, const Piece& dstp, std::vector<Piece*>& board)
 {
-	int srci = Point::get_index(sp), dsti = Point::get_index(dp); 
+	int srci = Point::get_index(*srcp.getPoint()), dsti = Point::get_index(*dstp.getPoint()); 
 
+	delete board[dsti]; 
 	board[dsti] = board[srci]; 
-	board[srci] = Empty(srci); // help :(
-
-	return board; 
+	board[srci] = new Empty(srcp.getPoint()); 
+ 
 }
 
-Piece* Point::get_piece(Point p, Piece* board) // needs checking
+char Point::get_piece(const Point& p, const std::vector<Piece*>& board) // needs checking
 { 
-	return &board[Point::get_index(p)];
+	return board[Point::get_index(p)]->get_type(); 
 }
 
-bool Point::is_my_color(char piece, int my_color)
+bool Point::is_my_color(const char piece, const int my_color)
 {
 	if (my_color == WHITE) // - uppercase
 	{
