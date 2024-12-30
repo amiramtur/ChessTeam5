@@ -60,10 +60,14 @@ void Point::replace(const Piece& srcp, const Piece& dstp, std::vector<Piece*>& b
 {
 	int srci = Point::get_index(*srcp.getPoint()), dsti = Point::get_index(*dstp.getPoint()); 
 
-	delete board[dsti]; 
-	board[dsti] = board[srci]; 
-	board[srci] = new Empty(srcp.getPoint()); 
- 
+	delete board[dsti];
+	board[dsti] = board[srci];
+	board[srci] = new Empty(srcp.getPoint());
+}
+
+Piece* Point::get_piece_class(const Point& p, const std::vector<Piece*>& board)
+{
+	return board[Point::get_index(p)];
 }
 
 char Point::get_piece(const Point& p, const std::vector<Piece*>& board) // needs checking

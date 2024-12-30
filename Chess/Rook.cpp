@@ -1,4 +1,5 @@
 #include "Rook.h"
+//#include "Point.h"
 #include <iostream>
 
 #define WHITE 0
@@ -98,7 +99,7 @@ void Rook::move(std::vector<Piece*>& board, Point& dstp)
 
 	if (isOk)
 	{
-		Point::replace( *this, , board);
+		Point::replace(*Point::get_piece_class(*this->_srcp, board), *Point::get_piece_class(dstp, board), board);
 	}
 }
 
