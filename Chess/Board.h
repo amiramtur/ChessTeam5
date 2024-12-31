@@ -17,13 +17,10 @@ public:
 	// constructor
 	Board();
 
-	// destructor
-	~Board();
-
 	// getters
 	int get_turn();
-	Piece* get_board();
+	std::vector<Piece*> get_board() const;
 
 	// other
-	void update_board(Piece* board);
+	void update_board(std::vector<Piece*> board);
 };

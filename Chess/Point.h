@@ -1,7 +1,9 @@
 #pragma once
 
-#include "Piece.h"
+#include <vector>
 #include <string>
+
+class Piece;
 
 class Point
 {
@@ -9,7 +11,7 @@ private:
 	int _x; 
 	int _y; 
 public: 
-	Point(std::string cords); //For example cords = [e,1] (the value which is returned from the c# file) 
+	Point(std::string cords); // For example cords = [e,1] (the value which is returned from the c# file) 
 	Point(int index); 
 	~Point(); 
 

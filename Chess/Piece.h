@@ -1,14 +1,12 @@
 #pragma once
 
-#include <string>
-#include "Point.h"
 #include <vector>
-
-#define ROW 8
+class Point;
 
 class Piece
 {
 public:
+	Piece();
 	virtual char get_type() = 0;
 	virtual int get_color() const = 0;
 	virtual Point* getPoint() const = 0;

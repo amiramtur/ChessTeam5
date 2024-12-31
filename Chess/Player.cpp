@@ -7,15 +7,14 @@
 #include "Queen.h"
 #include "Bishop.h"
 
+Player::Player()
+{
+	this->_color = -1;
+}
+
 Player::Player(int color)
 {
 	this->_color = color; 
-}
-
-Player::~Player()
-{
-	// distructors are automatically called
-	this->_color = -1; 
 }
 
 int Player::get_color()

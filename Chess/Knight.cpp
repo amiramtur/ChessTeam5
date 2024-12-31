@@ -1,4 +1,5 @@
 #include "Knight.h"
+#include "Point.h"
 #include <cstdlib> // for "abs()"
 
 #define WHITE 0

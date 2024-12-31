@@ -8,11 +8,9 @@ class Player
 protected: 
 	int _color;
 public:
-	// constructor
+	// constructors
+	Player(); // might cause issues, keep an eye on it
 	Player(int color);
-
-	// destructor
-	~Player();
 
 	// getter
 	int get_color();

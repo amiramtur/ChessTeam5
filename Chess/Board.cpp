@@ -11,7 +11,7 @@
 #define BOARD_LEN 64
 
 // constructor 
-Board::Board() //white =0, black =1
+Board::Board() // white = 0, black = 1
 {
 	this->_player1 = Player(0);
 	this->_player2 = Player(1);
@@ -47,27 +47,19 @@ Board::Board() //white =0, black =1
 	}
 }
 
-// destructor
-Board::~Board()
-{
-	//this->_board = ""; UPDATE!
-	~Player(this->_player1); // doesn't need fixing, add a Player destructor
-	~Player(this->_player2); // doesn't need fixing, add a Player destructor
-}
-
 // getters
 int Board::get_turn()
 {
 	return this->_turn;
 }
 
-Piece* Board::get_board()
+std::vector<Piece*> Board::get_board() const
 {
 	return this->_board;
 }
 
 // other
-void Board::update_board(Piece* board)
+void Board::update_board(std::vector<Piece*> board)
 {
 	this->_board = board;
 }

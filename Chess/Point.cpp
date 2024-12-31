@@ -1,5 +1,6 @@
 #include "Point.h"
 #include "Empty.h"
+#include <string>
 
 #define WHITE 0
 //#define BLACK 1
