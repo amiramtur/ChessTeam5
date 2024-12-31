@@ -4,13 +4,17 @@
 #include "Bishop.h"
 
 
-class Queen : public Rook, Bishop
+class Queen : public Piece
 {
+private: 
+	Rook* _myRook; 
+	Bishop* _myBishop; 
+	int _color; 
 public:
-	Queen(int color);
+	Queen(const int color, Point* srcp);
+	~Queen(); 
 	virtual char get_type() override;
-	virtual std::string move(Point& board, Point& dp) override; //sp = source point, dp = distanation point
+	virtual Point* getPoint() const; 
+	virtual void move(std::vector<Piece*>& board, Point& dstp) override; //sp = source point, dp = distanation point
 
-private:
-	int _color;
 };

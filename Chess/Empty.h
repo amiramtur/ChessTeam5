@@ -12,5 +12,5 @@ public:
 
 	virtual Point* getPoint() const override; 
 	virtual char get_type() override;
-	virtual std::vector<Piece*> move(std::vector<Piece*> board, Point& dstp) override;
+	virtual void move(std::vector<Piece*>& board, Point& dstp) override;
 };

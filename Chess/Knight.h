@@ -10,6 +10,6 @@ public:
 	Knight(int color, Point* srcp);
 	virtual Point* getPoint() const; 
 	virtual char get_type() override;
-	virtual void move(const std::vector<Piece*>& board, const Point& dstp) override; //sp = source point, dp = distanation point
+	virtual void move(std::vector<Piece*>& board, Point& dstp) override; //sp = source point, dp = distanation point
 };
 

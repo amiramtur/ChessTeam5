@@ -21,7 +21,7 @@ char Bishop::get_type()
 	return 'b';
 }
 
-void Bishop::move(const std::vector<Piece*>& board, const Point& dstp)
+void Bishop::move(std::vector<Piece*>& board, Point& dstp)
 {
 	char sPiece = Point::get_piece(*this->_srcp, board);
 	char dPiece = Point::get_piece(dstp, board);
@@ -49,6 +49,7 @@ void Bishop::move(const std::vector<Piece*>& board, const Point& dstp)
 				temp.set_y(temp.get_y() + 1);
 				if (Point::get_piece(temp, board) != '#')
 				{
+					isOk = false; 
 					throw 6; //code 6 
 				}
 			}
@@ -61,6 +62,7 @@ void Bishop::move(const std::vector<Piece*>& board, const Point& dstp)
 				temp.set_y(temp.get_y() + 1);
 				if (Point::get_piece(temp, board) != '#')
 				{
+					isOk = false;
 					throw 6; //code 6 
 				}
 			}
@@ -73,6 +75,7 @@ void Bishop::move(const std::vector<Piece*>& board, const Point& dstp)
 				temp.set_x(temp.get_x() + 1);
 				if (Point::get_piece(temp, board) != '#')
 				{
+					isOk = false;
 					throw 6; //code 6 
 				}
 			}
@@ -85,6 +88,7 @@ void Bishop::move(const std::vector<Piece*>& board, const Point& dstp)
 				temp.set_x(temp.get_x() - 1);
 				if (Point::get_piece(temp, board) != '#')
 				{
+					isOk = false;
 					throw 6; //code 6 
 				}
 			}

@@ -5,7 +5,7 @@
 
 Pawn::Pawn(const int color, Point* sp) : Piece()
 {
-	this->_color = color;
+	this->_color = color; 
 	this->_srcp = sp; 
 }
 
@@ -24,7 +24,7 @@ char Pawn::get_type()
 	return 'p';
 }
 
-void Pawn::move(const std::vector<Piece*>& board, const Point& dstp)
+void Pawn::move(std::vector<Piece*>& board, Point& dstp)
 {
 	char sPiece = Point::get_piece(*this->_srcp, board), dPiece = Point::get_piece(dstp, board);
 	int dx = dstp.get_x() - this->_srcp->get_x(), dy = dstp.get_y() - this->_srcp->get_y(); // d = distance 

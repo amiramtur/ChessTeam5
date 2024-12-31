@@ -12,5 +12,5 @@ public:
 	Bishop(const int color, Point* srcp);
 	virtual Point* getPoint() const override; 
 	virtual char get_type() override;
-	void move(const std::vector<Piece*>& board, const Point& dstp) override; //sp = source point, dp = distanation point
+	void move(std::vector<Piece*>& board, Point& dstp) override; //sp = source point, dp = distanation point
 };

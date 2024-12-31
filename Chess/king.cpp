@@ -29,7 +29,7 @@ char King::get_type()
 	return 'k';
 }
 
-void King::move(const std::vector<Piece*>& board, const Point& dstp)
+void King::move(std::vector<Piece*>& board, Point& dstp)
 {
 	Piece* sPiece = Point::get_piece_class(*this->_srcp, board);
 	Piece* dPiece = Point::get_piece_class(dstp, board);
