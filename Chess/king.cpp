@@ -20,6 +20,11 @@ Point* King::getPoint() const
 	return this->_srcp;
 }
 
+int King::get_color() const
+{
+	return this->_color; 
+}
+
 char King::get_type()
 {
 	if (this->_color == WHITE)

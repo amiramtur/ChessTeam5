@@ -24,6 +24,11 @@ char Rook::get_type()
 	return 'r';
 }
 
+int Rook::get_color() const
+{
+	return this->_color; 
+}
+
 void Rook::move(std::vector<Piece*>& board, Point& dstp)
 {
 	char dPiece = Point::get_piece(dstp, board);

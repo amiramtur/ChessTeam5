@@ -6,7 +6,6 @@ Queen::Queen(const int color, Point* srcp) : Piece()
 {
 	this->_myBishop = new Bishop(color, srcp); 
 	this->_myRook = new Rook(color, srcp); 
-	this->_color = color; 
 }
 
 Queen::~Queen()
@@ -15,9 +14,14 @@ Queen::~Queen()
 	delete this->_myRook; 
 }
 
+int Queen::get_color() const
+{
+	return this->_myBishop->get_color(); 
+}
+
 char Queen::get_type()
 {
-	if (this->_color == WHITE)
+	if (this->get_color() == WHITE)
 	{
 		return 'Q';
 	}

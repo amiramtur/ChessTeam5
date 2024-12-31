@@ -15,6 +15,11 @@ Point* Knight::getPoint() const
 	return this->_srcp; 
 }
 
+int Knight::get_color() const
+{
+	return this->_color; 
+}
+
 char Knight::get_type()
 {
 	if (this->_color == WHITE)

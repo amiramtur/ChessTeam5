@@ -16,6 +16,11 @@ Point* Empty::getPoint() const
 	return this->_srcp; 
 }
 
+int Empty::get_color() const
+{
+	return -1; 
+}
+
 char Empty::get_type()
 {
 	return '#';

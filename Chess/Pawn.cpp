@@ -12,7 +12,7 @@ Pawn::Pawn(const int color, Point* sp) : Piece()
 Pawn::~Pawn()
 {
 	this->_color = -1; //no value 
-	delete(this->_srcp); 
+	delete this->_srcp; 
 }
 
 char Pawn::get_type()
@@ -22,6 +22,11 @@ char Pawn::get_type()
 		return 'P';
 	}
 	return 'p';
+}
+
+int Pawn::get_color() const
+{
+	return this->_color; 
 }
 
 void Pawn::move(std::vector<Piece*>& board, Point& dstp)

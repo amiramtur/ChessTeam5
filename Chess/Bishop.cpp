@@ -12,6 +12,11 @@ Point* Bishop::getPoint() const
 	return this->_srcp; 
 }
 
+int Bishop::get_color() const
+{
+	return this->_color; 
+}
+
 char Bishop::get_type()
 {
 	if (this->_color == WHITE)
