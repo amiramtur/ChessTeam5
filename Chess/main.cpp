@@ -23,19 +23,26 @@ int main()
 		turn = board.get_turn();
 		std::cout << "Enter your choice: " << std::endl <<
 			"1 | MOVE" << std::endl <<
-			"2 | " << std::endl <<
+			"2 | PRINT BOARD" << std::endl <<
 			"0 | EXIT" << std::endl;
 
 		std::cin >> input;
-		if (input == 1)
+
+		switch (input)
 		{
-			// move
-		}
-		else if (input == 0)
-		{
-			flag = 1; // change after fusing with game engine
-			std::cout << "GOODBYE";
+		case 1: // move
+
+			break;
+		case 2: // print board
+			board.print_board();
+			break;
+		case 0:
+			std::cout << "Goodbye!";
+			flag = 0; // change after fusing with game engine
 			//msgFromGraphics != "quit" (exit game engine)
+			break;
+		default:
+			std::cout << "Invalid input! Try again." << std::endl;
 		}
 	}
 }

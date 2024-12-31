@@ -22,5 +22,6 @@ public:
 	std::vector<Piece*> get_board() const;
 
 	// other
+	void print_board() const;
 	void update_board(std::vector<Piece*> board);
 };

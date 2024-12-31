@@ -1,5 +1,8 @@
+#include <iostream>
+#include <string> // check if necessary
 #include "Board.h"
 #include "Player.h"
+#include "Point.h"
 #include "Rook.h"
 #include "Knight.h"
 #include "Bishop.h"
@@ -9,6 +12,7 @@
 
 #define BOARD "RNBQKBNRPPPPPPPP################################pppppppprnbkqbnr"
 #define BOARD_LEN 64
+#define ROW_COL 8
 
 // constructor 
 Board::Board() // white = 0, black = 1
@@ -59,6 +63,23 @@ std::vector<Piece*> Board::get_board() const
 }
 
 // other
+void Board::print_board() const
+{
+	Point coords = Point("00");
+	int i = 1, j = 1;
+	for (i = 1; i <= ROW_COL; i++)
+	{
+		for (j = 1; j <= ROW_COL; j++)
+		{
+			std::cout << this->_board.at(i*(j-1))->get_type();
+			if (j % 8 == 0)
+			{
+				std::cout << std::endl;
+			}
+		}
+	}
+}
+
 void Board::update_board(std::vector<Piece*> board)
 {
 	this->_board = board;
