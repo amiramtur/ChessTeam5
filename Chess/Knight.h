@@ -11,6 +11,6 @@ public:
 	virtual Point* getPoint() const; 
 	virtual int get_color() const override;
 	virtual char get_type() override;
-	virtual void move(std::vector<Piece*>& board, Point& dstp) override; //sp = source point, dp = distanation point
+	virtual bool move( const std::vector<Piece*>& board, const Point& dstp) const override; //sp = source point, dp = distanation point
 };
 

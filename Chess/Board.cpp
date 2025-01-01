@@ -9,6 +9,7 @@
 #include "Queen.h"
 #include "King.h"
 #include "Empty.h" 
+#include "Pawn.h"
 
 #define BOARD "RNBQKBNRPPPPPPPP################################pppppppprnbkqbnr"
 #define BOARD_LEN 64
@@ -43,6 +44,9 @@ Board::Board() // white = 0, black = 1
 		case 'K':
 			this->_board.push_back(new King(color, new Point(i)));
 			break;
+		case 'P':
+			this->_board.push_back(new Pawn(color, new Point(i)));
+			break;
 		case '#': 
 			this->_board.push_back(new Empty(new Point(i)));
 			color = 1; //changes the color after arriving empty
@@ -66,12 +70,13 @@ std::vector<Piece*> Board::get_board() const
 void Board::print_board() const
 {
 	Point coords = Point("00");
-	int i = 1, j = 1;
+	int i = 1, j = 1, k = 0;
 	for (i = 1; i <= ROW_COL; i++)
 	{
 		for (j = 1; j <= ROW_COL; j++)
 		{
-			std::cout << this->_board.at(i*(j-1))->get_type();
+			std::cout << this->_board.at(k)->get_type();
+			k++;
 			if (j % 8 == 0)
 			{
 				std::cout << std::endl;

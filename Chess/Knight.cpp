@@ -30,9 +30,8 @@ char Knight::get_type()
 	return 'n';
 }
 
-void Knight::move(std::vector<Piece*>& board, Point& dstp)
+bool Knight::move(const std::vector<Piece*>& board,const Point& dstp) const
 {
-	char sPiece = Point::get_piece(*this->_srcp, board), dPiece = Point::get_piece(dstp, board);
 	int dx = dstp.get_x() - this->_srcp->get_x(), dy = dstp.get_y() - this->_srcp->get_y(); // d = distance 
 	bool isOk = true;
 	
@@ -45,9 +44,6 @@ void Knight::move(std::vector<Piece*>& board, Point& dstp)
 		isOk = false;
 		throw 6; // code 6  
 	}
-
-	if (isOk)
-	{
-		Point::replace(*Point::get_piece_class(*this->_srcp, board), *Point::get_piece_class(dstp, board), board);
-	}
+	
+	return isOk; 
 }

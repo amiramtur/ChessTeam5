@@ -4,6 +4,7 @@
 
 #define WHITE 0
 //#define BLACK 1
+#define BOARD_LEN 64
 
 Point::Point(std::string cords)
 {
@@ -93,6 +94,18 @@ bool Point::is_my_color(const char piece, const int my_color)
 		}
 	}
 	return false;
+}
+
+Point* Point::find_king(const std::vector<Piece*>& board, const int color)
+{
+	int i = 0; 
+	for (i = 0; i < BOARD_LEN; i++)
+	{
+		if ((board.at(i)->get_type() == 'K' || board.at(i)->get_type() == 'k') && board.at(i)->get_color() == color)
+		{
+			return board.at(i)->getPoint(); 
+		}
+	}
 }
 
 

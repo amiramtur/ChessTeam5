@@ -26,7 +26,8 @@ char Empty::get_type()
 	return '#';
 }
 
-void Empty::move(std::vector<Piece*>& board, Point& dstp)
+bool Empty::move(const std::vector<Piece*>& board, const Point& dstp) const
 {
 	throw 2;
+	return false;
 }

@@ -29,9 +29,8 @@ int Rook::get_color() const
 	return this->_color; 
 }
 
-void Rook::move(std::vector<Piece*>& board, Point& dstp)
+bool Rook::move(const std::vector<Piece*>& board, const Point& dstp) const
 {
-	char dPiece = Point::get_piece(dstp, board);
 	int dx = dstp.get_x() - this->_srcp->get_x(), dy = dstp.get_y() - this->_srcp->get_y(); //d = distance 
 	bool isOk = true; 
 	Point temp = *this->_srcp;
@@ -44,11 +43,6 @@ void Rook::move(std::vector<Piece*>& board, Point& dstp)
 	{
 		isOk = false; 
 	 	throw 6; //code 6  
-	}
-	else if (dPiece == 'k' || dPiece == 'K')
-	{
-		isOk = false; 
-		throw 8; //code 8
 	}
 	else
 	{
@@ -103,9 +97,6 @@ void Rook::move(std::vector<Piece*>& board, Point& dstp)
 		}
 	}
 
-	if (isOk)
-	{
-		Point::replace(*Point::get_piece_class(*this->_srcp, board), *Point::get_piece_class(dstp, board), board);
-	}
+	return isOk; 
 }
 

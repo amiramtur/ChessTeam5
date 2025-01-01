@@ -34,10 +34,8 @@ char King::get_type()
 	return 'k';
 }
 
-void King::move(std::vector<Piece*>& board, Point& dstp)
+bool King::move(const std::vector<Piece*>& board, const Point& dstp) const
 {
-	Piece* sPiece = Point::get_piece_class(*this->_srcp, board);
-	Piece* dPiece = Point::get_piece_class(dstp, board);
 	int dx = dstp.get_x() - this->_srcp->get_x(), dy = dstp.get_y() - this->_srcp->get_y(); //d = distance 
 	bool isOk = true;
 
@@ -51,9 +49,6 @@ void King::move(std::vector<Piece*>& board, Point& dstp)
 		throw 6; //code 6  
 	}
 
-	if (isOk)
-	{
-		Point::replace(*Point::get_piece_class(*this->_srcp, board), *Point::get_piece_class(dstp, board), board);
-	}
+	return isOk; 
 }
 

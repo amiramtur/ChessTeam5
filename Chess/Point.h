@@ -25,5 +25,6 @@ public:
 	static Piece* get_piece_class(const Point& p, const std::vector<Piece*>& board);
 	static void replace(const Piece& srcp, const Piece& dstp, std::vector<Piece*>& board); // swaps two points
 	static bool is_my_color(const char piece, const int my_color);
+	static Point* find_king(const std::vector<Piece*>& board, const int color); 
 	bool operator!=(const Point& other) const;
 };

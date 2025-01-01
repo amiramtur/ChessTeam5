@@ -26,10 +26,8 @@ char Bishop::get_type()
 	return 'b';
 }
 
-void Bishop::move(std::vector<Piece*>& board, Point& dstp)
+bool Bishop::move(const std::vector<Piece*>& board, const Point& dstp) const
 {
-	char sPiece = Point::get_piece(*this->_srcp, board);
-	char dPiece = Point::get_piece(dstp, board);
 	int dx = dstp.get_x() - this->_srcp->get_x(), dy = dstp.get_y() - this->_srcp->get_y(); //d = distance 
 	bool isOk = true;
 
@@ -100,10 +98,7 @@ void Bishop::move(std::vector<Piece*>& board, Point& dstp)
 		}
 	}
 
-	if (isOk)
-	{
-		Point::replace(*Point::get_piece_class(*this->_srcp, board), *Point::get_piece_class(dstp, board), board);
-	}
+	return isOk; 
 }
 
 

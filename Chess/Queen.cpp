@@ -33,8 +33,9 @@ Point* Queen::getPoint() const
 	return this->_myBishop->getPoint(); 
 }
 
-void Queen::move(std::vector<Piece*>& board, Point& dstp)
+bool Queen::move(const std::vector<Piece*>& board,const Point& dstp) const
 {
+	bool isOk = true; 
 	try
 	{
 		this->_myBishop->move(board, dstp); 
@@ -47,8 +48,11 @@ void Queen::move(std::vector<Piece*>& board, Point& dstp)
 		}
 		catch (int eror2)
 		{
+			isOk = false; 
 			throw eror2; 
 		}
 	}
+
+	return isOk; 
 }
 

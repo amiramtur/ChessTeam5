@@ -29,7 +29,12 @@ int Pawn::get_color() const
 	return this->_color; 
 }
 
-void Pawn::move(std::vector<Piece*>& board, Point& dstp)
+Point* Pawn::getPoint() const
+{
+	return this->_srcp; 
+}
+
+bool Pawn::move(const std::vector<Piece*>& board, const Point& dstp) const
 {
 	char sPiece = Point::get_piece(*this->_srcp, board), dPiece = Point::get_piece(dstp, board);
 	int dx = dstp.get_x() - this->_srcp->get_x(), dy = dstp.get_y() - this->_srcp->get_y(); // d = distance 
@@ -47,8 +52,5 @@ void Pawn::move(std::vector<Piece*>& board, Point& dstp)
 		throw 6; // code 6
 	}
 	
-	if (isOk)
-	{
-		Point::replace(*Point::get_piece_class(*this->_srcp, board), *Point::get_piece_class(dstp, board), board);
-	}
+	return isOk; 
 }

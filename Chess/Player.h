@@ -15,5 +15,5 @@ public:
 	// getter
 	int get_color();
 
-	void move(std::vector<Piece*>& board, Piece* srcp, Piece* dstp);
+	int move(std::vector<Piece*>& board, Piece* srcp, Piece* dstp);
 };
