@@ -50,18 +50,18 @@ int Player::move(std::vector<Piece*>& board, Piece* srcp, Piece* dstp)
 		}
 	}
 
-	//chess checks: 
-	int other_color = 0; 
-	if (other_color == this->_color)
-	{
-		other_color = 1;
-	}
+	
 
-	Point my_king = *Point::find_king(board, this->_color); 
-	Point other_king = *Point::find_king(board, other_color);
-
-	if (isOk) //check if there is chess on my king
+	if (isOk) //check if there is chess on the kings
 	{
+		//chess checks: 
+		int other_color = 0;
+		if (other_color == this->_color)
+		{
+			other_color = 1;
+		}
+		Point my_king = *Point::find_king(board, this->_color);
+		Point other_king = *Point::find_king(board, other_color);
 		for (i = 0; i < BOARD_LEN; i++) //Goes through every piece on the board
 		{
 			if(board.at(i)->get_color() == other_color)

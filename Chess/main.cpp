@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Board.h"
+#include "Point.h"
 
 #define WELCOME_MSG R"(  ____ _   _ _____ ____ ____  
  / ___| | | | ____/ ___/ ___| 
@@ -14,7 +15,7 @@ int main()
 	Board board = Board();
 	int turn = board.get_turn(), input = 0, flag = 1;
 	int source_point, destination_point;
-
+	std::string cords1 = " ", cords2 = " ";
 	std::cout << WELCOME_MSG;
 	
 	// game loop
@@ -31,12 +32,17 @@ int main()
 		switch (input)
 		{
 		case 1: // move
-
-			break;
+			std::cout << "Enter src cords:" << std::endl; 
+			std::cin >> cords1; 
+			std::cout << "Enter dst cords:" << std::endl;
+			std::cin >> cords2;
+			board.move(Point::get_index(cords1), Point::get_index(cords2)); 
+			board.print_board(); 
+			break; 
 		case 2: // print board
 			board.print_board();
 			break;
-		case 0:
+		case 0: 
 			std::cout << "Goodbye!";
 			flag = 0; // change after fusing with game engine
 			//msgFromGraphics != "quit" (exit game engine)

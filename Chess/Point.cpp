@@ -8,7 +8,7 @@
 
 Point::Point(std::string cords)
 {
-	this->_x = (int)cords[0]; 
+	this->_x = (int)cords[0] - 'a';
 	this->_y = (int)cords[1] - '0'; // converting ascii value to number 
 }
 
@@ -56,6 +56,16 @@ int Point::get_index(const Point& p)
 	i += (p.get_x() - 1);
 
 	return i;
+}
+
+int Point::get_index(const std::string& p)
+{
+	std::string newp = p; 
+
+	int i = 0; 
+	i = (((int)p[1]) - '0' - 1) * 8;
+	i += (((int)p[0])) - 'a';
+	return i; 
 }
 
 void Point::replace(const Piece& srcp, const Piece& dstp, std::vector<Piece*>& board)

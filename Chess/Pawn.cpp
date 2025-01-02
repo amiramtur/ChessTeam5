@@ -45,8 +45,8 @@ bool Pawn::move(const std::vector<Piece*>& board, const Point& dstp) const
 	{ 
 		isOk = false;
 	}
-	else if ((start == true && std::abs(dy) > 2) || (start == false && std::abs(dy) > 1) ||
-			(std::abs(dx) > 1 && dPiece == '#') || dy < 1)  // pawn check
+	else if (this->_color == 1 && ((start == true && dy < 2) || (start == false && dy < 1 ) ||
+			(std::abs(dx) > 1 && dPiece == '#') || dy > 0 || (dx == 0 && dPiece != '#')))  // pawn check
 	{
 		isOk = false;
 		throw 6; // code 6

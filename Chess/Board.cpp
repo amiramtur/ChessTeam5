@@ -89,3 +89,15 @@ void Board::update_board(std::vector<Piece*> board)
 {
 	this->_board = board;
 }
+
+void Board::move(int i1, int i2)
+{
+	if (this->_turn == 0)
+	{
+		this->_player1.move(this->_board, this->_board[i1], this->_board[i2]);
+	}
+	else
+	{
+		this->_player2.move(this->_board, this->_board[i1], this->_board[i2]);
+	}
+}
