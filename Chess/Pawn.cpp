@@ -3,17 +3,8 @@
 
 #define WHITE 0
 
-Pawn::Pawn(const int color, Point* sp) : Piece()
-{
-	this->_color = color; 
-	this->_srcp = sp; 
-}
-
-Pawn::~Pawn()
-{
-	this->_color = -1; //no value 
-	delete this->_srcp; 
-}
+Pawn::Pawn(const int color, Point* srcp) : Piece(color, srcp)
+{}
 
 char Pawn::get_type()
 {

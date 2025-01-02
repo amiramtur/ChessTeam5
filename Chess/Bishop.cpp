@@ -2,9 +2,7 @@
 
 #define WHITE 0
 
-Bishop::Bishop(const int color, Point* srcp) : Piece(){
-	this->_color = color; 
-	this->_srcp = srcp; 
+Bishop::Bishop(const int color, Point* srcp) : Piece(color, srcp){
 }
 
 Point* Bishop::getPoint() const

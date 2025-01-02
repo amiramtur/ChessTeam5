@@ -4,10 +4,8 @@
 
 #define WHITE 0
 
-Rook::Rook(int color, Point* srcp) : Piece()
+Rook::Rook(int color, Point* srcp) : Piece(color, srcp)
 {
-	this->_color = color;
-	this->_srcp = srcp; 
 }
 
 Point* Rook::getPoint() const

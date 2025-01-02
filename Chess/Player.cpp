@@ -66,17 +66,27 @@ int Player::move(std::vector<Piece*>& board, Piece* srcp, Piece* dstp)
 		{
 			if(board.at(i)->get_color() == other_color)
 			{
-				if (board.at(i)->move(board, my_king))
+				try
 				{
-					code_to_return = 4;
+					if (board.at(i)->move(board, my_king))
+					{
+						code_to_return = 4; 
+					}
 				}
+				catch (int error)
+				{}
 			}
 			else if (board.at(i)->get_color() == this->_color)
 			{
-				if (board.at(i)->move(board, other_king))
+				try
 				{
-					code_to_return = 1;
+					if (board.at(i)->move(board, other_king))
+					{
+						code_to_return = 1;
+					}
 				}
+				catch (int error)
+				{}
 			}
 		}
 	}

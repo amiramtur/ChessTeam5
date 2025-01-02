@@ -74,7 +74,7 @@ void Point::replace(const Piece& srcp, const Piece& dstp, std::vector<Piece*>& b
 
 	delete board[dsti];
 	board[dsti] = board[srci];
-	board[srci] = new Empty(srcp.getPoint());
+	board[srci] = new Empty(-1, srcp.getPoint());
 }
 
 Piece* Point::get_piece_class(const Point& p, const std::vector<Piece*>& board)

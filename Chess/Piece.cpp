@@ -2,7 +2,16 @@
 #include <iostream>
 #include "Point.h"
 
-Piece::Piece() {}
+Piece::Piece(int color, Point* srcp) :
+	_color(color), _srcp(srcp)
+{}
+
+Piece::~Piece()
+{
+	delete this->_srcp; 
+	this->_srcp = nullptr; 
+	this->_color = -1; 
+}
 
 bool Piece::first_check(const std::vector<Piece*>& board, const Point& sp, const Point& dp, const int color)
 {

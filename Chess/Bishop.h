@@ -5,9 +5,6 @@
 
 class Bishop : virtual public Piece
 {
-private: 
-	int _color; //0 = white, 1 = black
-	Point* _srcp; //source point
 public:
 	Bishop(const int color, Point* srcp);
 	virtual Point* getPoint() const override; 

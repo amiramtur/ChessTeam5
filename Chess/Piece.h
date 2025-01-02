@@ -5,8 +5,12 @@ class Point;
 
 class Piece
 {
+protected:
+	int _color; //0 = white, 1 = black
+	Point* _srcp; //source point
 public:
-	Piece();
+	Piece(int color, Point* srcp);
+	virtual ~Piece();  
 	virtual char get_type() = 0;
 	virtual int get_color() const = 0;
 	virtual Point* getPoint() const = 0;

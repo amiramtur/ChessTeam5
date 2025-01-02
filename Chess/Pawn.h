@@ -5,12 +5,9 @@
 
 class Pawn : public Piece
 {
-private:
-	int _color; //0 = white, 1 = black
-	Point* _srcp; //source point
 public:
 	Pawn(const int color, Point* sp);
-	~Pawn();
+
 	
 	virtual char get_type() override;
 	virtual int get_color() const override;

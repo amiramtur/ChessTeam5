@@ -4,16 +4,9 @@
 
 #define WHITE 0
 
-King::King(int color, Point* srcp) 
-{
-	this->_color = color; 
-	this->_srcp = srcp; 
-}
+King::King(int color, Point* srcp) : Piece(color, srcp)
+{}
 
-King::~King()
-{
-	delete this->_srcp; 
-}
 
 Point* King::getPoint() const
 {

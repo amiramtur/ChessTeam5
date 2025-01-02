@@ -48,7 +48,7 @@ Board::Board() // white = 0, black = 1
 			this->_board.push_back(new Pawn(color, new Point(i)));
 			break;
 		case '#': 
-			this->_board.push_back(new Empty(new Point(i)));
+			this->_board.push_back(new Empty(-1, new Point(i)));
 			color = 1; //changes the color after arriving empty
 			break;
 		}

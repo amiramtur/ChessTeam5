@@ -5,11 +5,8 @@
 #define WHITE 0
 
 
-Knight::Knight(int color, Point* srcp) : Piece()
-{
-	this->_color = color;
-	this->_srcp = srcp;
-}
+Knight::Knight(int color, Point* srcp) : Piece(color, srcp)
+{}
 
 Point* Knight::getPoint() const
 {
