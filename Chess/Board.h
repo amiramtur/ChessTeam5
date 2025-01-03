@@ -24,5 +24,5 @@ public:
 	// other
 	void print_board() const;
 	void update_board(std::vector<Piece*> board);
-	void move(int i1, int i2);
+	int move(int i1, int i2);
 };

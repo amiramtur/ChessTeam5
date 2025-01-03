@@ -90,14 +90,31 @@ void Board::update_board(std::vector<Piece*> board)
 	this->_board = board;
 }
 
-void Board::move(int i1, int i2)
+int Board::move(int i1, int i2)
 {
+	int code_to_return = 0;
 	if (this->_turn == 0)
 	{
-		this->_player1.move(this->_board, this->_board[i1], this->_board[i2]);
+		try
+		{
+			code_to_return = this->_player1.move(this->_board, this->_board[i1], this->_board[i2]);
+		}
+		catch (int error)
+		{
+			code_to_return = error;
+		}
 	}
 	else
 	{
-		this->_player2.move(this->_board, this->_board[i1], this->_board[i2]);
+		try
+		{
+			code_to_return = this->_player2.move(this->_board, this->_board[i1], this->_board[i2]);
+		}
+		catch (int error)
+		{
+			code_to_return = error; 
+		}
 	}
+
+	return code_to_return; 
 }
