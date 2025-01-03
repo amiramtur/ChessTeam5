@@ -14,8 +14,8 @@ Point::Point(std::string cords)
 
 Point::Point(int index)
 {
-	this->_x = (index / 8) + 1; 
-	this->_y = (index % 8) + 1; 
+	this->_y = (index / 8) + 1; 
+	this->_x = (index % 8) + 1; 
 }
 
 Point::~Point()
@@ -89,6 +89,10 @@ char Point::get_piece(const Point& p, const std::vector<Piece*>& board) // needs
 
 bool Point::is_my_color(const char piece, const int my_color)
 {
+	if (piece == '#')
+	{
+		return false; 
+	}
 	if (my_color == WHITE) // - uppercase
 	{
 		if (isupper(piece))
