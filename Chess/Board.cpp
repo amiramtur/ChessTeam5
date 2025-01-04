@@ -115,5 +115,15 @@ int Board::move(int i1, int i2)
 		}
 	}
 
+	//replace the turn
+	if (code_to_return == 0)
+		if (this->_turn == 0)
+		{
+			this->_turn = 1;
+		}
+		else
+		{
+			this->_turn = 0;
+		}
 	return code_to_return; 
 }
