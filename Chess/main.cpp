@@ -2,6 +2,9 @@
 #include "Board.h"
 #include "Point.h"
 
+#define BLACK_STR "black"
+#define WHITE_STR "WHITE"
+
 #define WELCOME_MSG R"(  ____ _   _ _____ ____ ____  
  / ___| | | | ____/ ___/ ___| 
 | |   | |_| |  _| \___ \___ \ 
@@ -22,6 +25,16 @@ int main()
 	while (flag) // change after fusing with game engine
 	{
 		turn = board.get_turn();
+		std::cout << "Current turn: ";
+		if (turn)
+		{
+			std::cout << BLACK_STR << std::endl;
+		}
+		else
+		{
+			std::cout << WHITE_STR << std::endl;
+		}
+		
 		std::cout << "Enter your choice: " << std::endl <<
 			"1 | MOVE" << std::endl <<
 			"2 | PRINT BOARD" << std::endl <<

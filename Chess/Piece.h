@@ -6,7 +6,7 @@ class Point;
 class Piece
 {
 protected:
-	int _color; //0 = white, 1 = black
+	int _color; // 0 = white, 1 = black
 	Point* _srcp; //source point
 public:
 	Piece(int color, Point* srcp);

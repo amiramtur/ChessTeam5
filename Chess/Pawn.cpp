@@ -5,7 +5,9 @@
 #define BLACK 1
 
 Pawn::Pawn(const int color, Point* srcp) : Piece(color, srcp)
-{}
+{
+	this->_start = true;
+}
 
 char Pawn::get_type()
 {
@@ -30,19 +32,18 @@ bool Pawn::move(const std::vector<Piece*>& board, const Point& dstp) const
 {
 	char sPiece = Point::get_piece(*this->_srcp, board), dPiece = Point::get_piece(dstp, board);
 	int dx = dstp.get_x() - this->_srcp->get_x(), dy = dstp.get_y() - this->_srcp->get_y(); // d = distance 
-	bool start = std::abs(this->_srcp->get_y()) == 2; 
+	bool start = ((std::abs(this->_srcp->get_y()) == 2 && this->_color == WHITE) || (std::abs(this->_srcp->get_y()) == 7 && this->_color == BLACK));
 	bool isOk = true;
+	int direction = 0, maxDy = 0;
 
 	if (Piece::first_check(board, *this->_srcp, dstp, this->_color))
 	{ 
 		isOk = false;
 	}
 
-
-
 	// Pawn check
-	int direction = (this->_color == WHITE) ? 1 : -1;
-	int maxDy = start ? 2 : 1;
+	direction = (this->_color == WHITE) ? 1 : -1;
+	maxDy = start ? 2 : 1;
 
 	// normal movement
 	if (dy * direction < 1 || dy * direction > maxDy || std::abs(dx) > 1) {
@@ -54,7 +55,7 @@ bool Pawn::move(const std::vector<Piece*>& board, const Point& dstp) const
 		isOk = false;
 		throw 6; // code 6
 	}
-	
+
 	return isOk; 
 }
 
