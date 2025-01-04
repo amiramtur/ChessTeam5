@@ -2,16 +2,17 @@
 
 #define WHITE 0
 
-Queen::Queen(const int color, Point* srcp) : Piece()
+Queen::Queen(const int color, Point* srcp) : Piece(color, srcp)
 {
 	this->_myBishop = new Bishop(color, srcp); 
 	this->_myRook = new Rook(color, srcp); 
 }
 
-Queen::~Queen()
+Queen::~Queen() 
 {
 	delete this->_myBishop; 
 	delete this->_myRook; 
+	delete this->_srcp; 
 }
 
 int Queen::get_color() const

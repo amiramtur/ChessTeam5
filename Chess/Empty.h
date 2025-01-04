@@ -5,11 +5,8 @@
 
 
 class Empty : public Piece {
-private: 
-	Point* _srcp; 
 public: 
-	Empty(Point* srcp);
-	~Empty();
+	Empty(int color, Point* srcp);
 
 	virtual Point* getPoint() const override; 
 	virtual int get_color() const override;

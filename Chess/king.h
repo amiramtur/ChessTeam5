@@ -5,12 +5,9 @@
 
 class King : public Piece 
 {
-private: 
-	int _color; // 0 - white 1 - black 
-	Point* _srcp; //source point 
 public:
 	King(int color, Point* srcp); 
-	~King();
+
 	virtual Point* getPoint() const override; 
 	virtual int get_color() const override;
 	virtual char get_type() override;

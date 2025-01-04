@@ -11,7 +11,7 @@
 #include "Empty.h" 
 #include "Pawn.h"
 
-#define BOARD "RNBQKBNRPPPPPPPP################################pppppppprnbkqbnr"
+#define BOARD "RNBQKBNRPPPPPPPP################################pppppppprnbqkbnr"
 #define BOARD_LEN 64
 #define ROW_COL 8
 
@@ -48,7 +48,7 @@ Board::Board() // white = 0, black = 1
 			this->_board.push_back(new Pawn(color, new Point(i)));
 			break;
 		case '#': 
-			this->_board.push_back(new Empty(new Point(i)));
+			this->_board.push_back(new Empty(-1, new Point(i)));
 			color = 1; //changes the color after arriving empty
 			break;
 		}
@@ -70,13 +70,12 @@ std::vector<Piece*> Board::get_board() const
 void Board::print_board() const
 {
 	Point coords = Point("00");
-	int i = 1, j = 1, k = 0;
+	int i = 1, j = 1;
 	for (i = 1; i <= ROW_COL; i++)
 	{
 		for (j = 1; j <= ROW_COL; j++)
 		{
-			std::cout << this->_board.at(k)->get_type();
-			k++;
+			std::cout << this->_board.at(((8 - i) * 8) + j-1)->get_type();
 			if (j % 8 == 0)
 			{
 				std::cout << std::endl;
@@ -90,14 +89,41 @@ void Board::update_board(std::vector<Piece*> board)
 	this->_board = board;
 }
 
-void Board::move(int i1, int i2)
+int Board::move(int i1, int i2)
 {
+	int code_to_return = 0;
 	if (this->_turn == 0)
 	{
-		this->_player1.move(this->_board, this->_board[i1], this->_board[i2]);
+		try
+		{
+			code_to_return = this->_player1.move(this->_board, this->_board[i1], this->_board[i2]);
+		}
+		catch (int error)
+		{
+			code_to_return = error;
+		}
 	}
 	else
 	{
-		this->_player2.move(this->_board, this->_board[i1], this->_board[i2]);
+		try
+		{
+			code_to_return = this->_player2.move(this->_board, this->_board[i1], this->_board[i2]);
+		}
+		catch (int error)
+		{
+			code_to_return = error; 
+		}
 	}
+
+	//replace the turn
+	if (code_to_return == 0 || code_to_return == 1)
+		if (this->_turn == 0)
+		{
+			this->_turn = 1;
+		}
+		else
+		{
+			this->_turn = 0;
+		}
+	return code_to_return; 
 }

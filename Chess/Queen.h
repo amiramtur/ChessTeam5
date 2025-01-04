@@ -9,10 +9,9 @@ class Queen : public Piece
 private: 
 	Rook* _myRook; 
 	Bishop* _myBishop; 
-	
 public:
 	Queen(const int color, Point* srcp);
-	~Queen(); 
+	~Queen() override; 
 	virtual int get_color() const override; 
 	virtual char get_type() override;
 	virtual Point* getPoint() const; 
