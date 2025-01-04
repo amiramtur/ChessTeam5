@@ -116,7 +116,7 @@ int Board::move(int i1, int i2)
 	}
 
 	//replace the turn
-	if (code_to_return == 0)
+	if (code_to_return == 0 || code_to_return == 1)
 		if (this->_turn == 0)
 		{
 			this->_turn = 1;
