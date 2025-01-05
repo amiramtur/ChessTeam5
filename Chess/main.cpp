@@ -23,7 +23,7 @@ int main()
 	bool isConnect = p.connect();
 	std::string ans;
 	char msgToGraphics[1024];
-	std::string msgFromGraphics = "";
+	std::string msgFromGraphics = "ab";
 	std::string board_str = "";
 	int code = 0;
 
@@ -59,57 +59,65 @@ int main()
 	// game loop
 	while (msgFromGraphics != "quit")
 	{
-		board_str = board.get_board_string() + "1";
+		cords1[0] = msgFromGraphics[0]; 
+		cords1[1] = msgFromGraphics[1]; 
+		cords2[0] = msgFromGraphics[2];
+		cords2[1] = msgFromGraphics[3];
+		code = board.move(Point::get_index(cords1), Point::get_index(cords2));
+		board_str[0] = (char)code;
+		board_str[1] = NULL; 
 		strcpy_s(msgToGraphics, board_str.c_str());
 		p.sendMessageToGraphics(msgToGraphics);
 		std::cout << msgToGraphics;
 
-		turn = board.get_turn();
-		std::cout << "Current turn: ";
-		if (turn)
-		{
-			std::cout << BLACK_STR << std::endl;
-		}
-		else
-		{
-			std::cout << WHITE_STR << std::endl;
-		}
-		
-		std::cout << "Enter your choice: " << std::endl <<
-			"1 | MOVE" << std::endl <<
-			"2 | PRINT BOARD" << std::endl <<
-			"0 | EXIT" << std::endl;
+		//turn = board.get_turn();
+		//std::cout << "Current turn: ";
+		//if (turn)
+		//{
+		//	std::cout << BLACK_STR << std::endl;
+		//}
+		//else
+		//{
+		//	std::cout << WHITE_STR << std::endl;
+		//}
+		//
+		//std::cout << "Enter your choice: " << std::endl <<
+		//	"1 | MOVE" << std::endl <<
+		//	"2 | PRINT BOARD" << std::endl <<
+		//	"0 | EXIT" << std::endl;
 
-		std::cin >> input;
+		//std::cin >> input;
 
-		switch (input)
-		{
-		case 1: // move
-			std::cout << "Enter src cords:" << std::endl; 
-			std::cin >> cords1; 
-			std::cout << "Enter dst cords:" << std::endl;
-			std::cin >> cords2;
-			code = board.move(Point::get_index(cords1), Point::get_index(cords2)); 
-			// build move code
+		//switch (input)
+		//{
+		//case 1: // move
+		//	std::cout << "Enter src cords:" << std::endl; 
+		//	std::cin >> cords1; 
+		//	std::cout << "Enter dst cords:" << std::endl;
+		//	std::cin >> cords2;
+		//	code = board.move(Point::get_index(cords1), Point::get_index(cords2)); 
+		//	// build move code
 
 
-			std::cout << board.get_board_string();
-			strcpy_s(msgToGraphics, std::to_string(code).c_str());
-			p.sendMessageToGraphics(msgToGraphics);
-			msgFromGraphics = p.getMessageFromGraphics(); // !
-			break; 
-		case 2: // print board
-			std::cout << board.get_board_string();
+		//	std::cout << board.get_board_string();
+		//	strcpy_s(msgToGraphics, std::to_string(code).c_str());
+		//	p.sendMessageToGraphics(msgToGraphics);
+		//	msgFromGraphics = p.getMessageFromGraphics(); // !
+		//	break; 
+		//case 2: // print board
+		//	std::cout << board.get_board_string();
 
-			break;
-		case 0: 
-			std::cout << "Goodbye!";
-			p.close();
-			//msgFromGraphics = "quit" //(exit game engine)
-			break;
-		default:
-			std::cout << "Invalid input! Try again." << std::endl;
-		}
+		//	break;
+		//case 0: 
+		//	std::cout << "Goodbye!";
+		//	p.close();
+		//	//msgFromGraphics = "quit" //(exit game engine)
+		//	break;
+		//default:
+		//	std::cout << "Invalid input! Try again." << std::endl;
+		//}
+
+		msgFromGraphics = p.getMessageFromGraphics();
 	}
 }
 
