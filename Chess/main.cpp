@@ -23,7 +23,7 @@ int main()
 	bool isConnect = p.connect();
 	std::string ans;
 	char msgToGraphics[1024];
-	std::string msgFromGraphics = p.getMessageFromGraphics();
+	std::string msgFromGraphics = "";
 	std::string board_str = "";
 	int code = 0;
 
@@ -55,6 +55,7 @@ int main()
 
 	strcpy_s(msgToGraphics, "rnbkqbnrpppppppp################################PPPPPPPPRNBKQBNR1");
 	p.sendMessageToGraphics(msgToGraphics);
+	msgFromGraphics = p.getMessageFromGraphics();
 	// game loop
 	while (msgFromGraphics != "quit")
 	{
