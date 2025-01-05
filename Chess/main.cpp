@@ -32,6 +32,7 @@ int main()
 	int turn = board.get_turn(), input = 0, flag = 1;
 	int source_point, destination_point;
 	std::string cords1 = " ", cords2 = " ";
+
 	
 	// connection
 	std::cout << WELCOME_MSG;
@@ -59,10 +60,10 @@ int main()
 	// game loop
 	while (msgFromGraphics != "quit")
 	{
-		board_str = board.get_board_string() + "1";
-		strcpy_s(msgToGraphics, board_str.c_str());
-		p.sendMessageToGraphics(msgToGraphics);
-		std::cout << msgToGraphics;
+		//board_str = board.get_board_string() + "1";
+		//strcpy_s(msgToGraphics, board_str.c_str());
+		//p.sendMessageToGraphics(msgToGraphics);
+		//std::cout << msgToGraphics;
 
 		turn = board.get_turn();
 		std::cout << "Current turn: ";
@@ -90,8 +91,6 @@ int main()
 			std::cout << "Enter dst cords:" << std::endl;
 			std::cin >> cords2;
 			code = board.move(Point::get_index(cords1), Point::get_index(cords2)); 
-			// build move code
-
 
 			std::cout << board.get_board_string();
 			strcpy_s(msgToGraphics, std::to_string(code).c_str());
