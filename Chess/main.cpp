@@ -23,8 +23,8 @@ int main()
 	bool isConnect = p.connect();
 	std::string ans;
 	char msgToGraphics[1024];
-	std::string msgFromGraphics = "ab";
-	std::string board_str = "";
+	std::string msgFromGraphics = "";
+	std::string board_str = "ab";
 	int code = 0;
 
 	// c++
@@ -64,8 +64,7 @@ int main()
 		cords2[0] = msgFromGraphics[2];
 		cords2[1] = msgFromGraphics[3];
 		code = board.move(Point::get_index(cords1), Point::get_index(cords2));
-		board_str[0] = (char)code;
-		board_str[1] = NULL; 
+		board_str = (char)code + 48;
 		strcpy_s(msgToGraphics, board_str.c_str());
 		p.sendMessageToGraphics(msgToGraphics);
 		std::cout << msgToGraphics;
