@@ -49,7 +49,7 @@ Board::Board() // white = 0, black = 1
 			break;
 		case '#': 
 			this->_board.push_back(new Empty(-1, new Point(i)));
-			color = 1; //changes the color after arriving empty
+			color = 1; // changes the color after arriving empty
 			break;
 		}
 	}
@@ -67,21 +67,25 @@ std::vector<Piece*> Board::get_board() const
 }
 
 // other
-void Board::print_board() const
+std::string Board::get_board_string() const
 {
 	Point coords = Point("00");
+	std::string board_str = "";
 	int i = 1, j = 1;
 	for (i = 1; i <= ROW_COL; i++)
 	{
 		for (j = 1; j <= ROW_COL; j++)
 		{
-			std::cout << this->_board.at(((8 - i) * 8) + j-1)->get_type();
+			board_str += this->_board.at(((8 - i) * 8) + j - 1)->get_type();
+			//std::cout << this->_board.at(((8 - i) * 8) + j-1)->get_type();
 			if (j % 8 == 0)
 			{
-				std::cout << std::endl;
+				board_str += "\n";
+				//std::cout << std::endl;
 			}
 		}
 	}
+	return board_str;
 }
 
 void Board::update_board(std::vector<Piece*> board)

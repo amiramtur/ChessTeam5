@@ -22,7 +22,7 @@ public:
 	std::vector<Piece*> get_board() const;
 
 	// other
-	void print_board() const;
+	std::string get_board_string() const;
 	void update_board(std::vector<Piece*> board);
 	int move(int i1, int i2);
 };
