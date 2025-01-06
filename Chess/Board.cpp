@@ -1,5 +1,5 @@
 #include <iostream>
-#include <string> // check if necessary
+#include <string>
 #include "Board.h"
 #include "Player.h"
 #include "Point.h"
