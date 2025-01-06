@@ -50,10 +50,13 @@ bool Rook::move(const std::vector<Piece*>& board, const Point& dstp) const
 			while (temp != dstp) //temp is a point
 			{
 				temp.set_x(temp.get_x() + 1);
-				if (Point::get_piece(temp, board) != '#')
+				if (temp != dstp)
 				{
-					isOk = false; 
-					throw 6; //code 6 
+					if (Point::get_piece(temp, board) != '#')
+					{
+						isOk = false;
+						throw 6; //code 6 
+					}
 				}
 			}
 		}
@@ -62,10 +65,13 @@ bool Rook::move(const std::vector<Piece*>& board, const Point& dstp) const
 			while (temp != dstp) //temp is a point
 			{
 				temp.set_x(temp.get_x() - 1);
-				if (Point::get_piece(temp, board) != '#')
+				if (temp != dstp)
 				{
-					isOk = false; 
-					throw 6; //code 6 
+					if (Point::get_piece(temp, board) != '#')
+					{
+						isOk = false;
+						throw 6; //code 6 
+					}
 				}
 			}
 		}
@@ -74,10 +80,13 @@ bool Rook::move(const std::vector<Piece*>& board, const Point& dstp) const
 			while (temp != dstp) //temp is a point
 			{
 				temp.set_y(temp.get_y() + 1);
-				if (Point::get_piece(temp, board) != '#')
+				if (temp != dstp)
 				{
-					isOk = false; 
-					throw 6; //code 6 
+					if (Point::get_piece(temp, board) != '#')
+					{
+						isOk = false;
+						throw 6; //code 6 
+					}
 				}
 			}
 		}
@@ -86,10 +95,13 @@ bool Rook::move(const std::vector<Piece*>& board, const Point& dstp) const
 			while (temp != dstp) //temp is a point
 			{
 				temp.set_y(temp.get_y() - 1);
-				if (Point::get_piece(temp, board) != '#')
+				if (temp != dstp)
 				{
-					isOk = false; 
-					throw 6; //code 6 
+					if (Point::get_piece(temp, board) != '#')
+					{
+						isOk = false;
+						throw 6; //code 6 
+					}
 				}
 			}
 		}

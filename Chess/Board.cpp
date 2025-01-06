@@ -11,7 +11,7 @@
 #include "Empty.h" 
 #include "Pawn.h"
 
-#define BOARD "RNBQKBNRPPPPPPPP################################pppppppprnbqkbnr"
+#define BOARD "RNBKQBNRPPPPPPPP################################pppppppprnbkqbnr"
 #define BOARD_LEN 64
 #define ROW_COL 8
 

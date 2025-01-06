@@ -46,7 +46,7 @@ void Point::set_y(const int y)
 
 bool Point::operator!=(const Point& other) const
 {
-	return (other.get_x() != this->_x || other.get_y() != this->_y);
+	return (other.get_x() != this->_x|| other.get_y() != this->_y);
 }
 
 int Point::get_index(const Point& p)

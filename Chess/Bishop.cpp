@@ -48,10 +48,13 @@ bool Bishop::move(const std::vector<Piece*>& board, const Point& dstp) const
 			{
 				temp.set_x(temp.get_x() + 1);
 				temp.set_y(temp.get_y() + 1);
-				if (Point::get_piece(temp, board) != '#')
+				if(temp != dstp)
 				{
-					isOk = false; 
-					throw 6; //code 6 
+					if (Point::get_piece(temp, board) != '#')
+					{
+						isOk = false;
+						throw 6; //code 6 
+					}
 				}
 			}
 		}
@@ -61,10 +64,13 @@ bool Bishop::move(const std::vector<Piece*>& board, const Point& dstp) const
 			{
 				temp.set_x(temp.get_x() - 1);
 				temp.set_y(temp.get_y() + 1);
-				if (Point::get_piece(temp, board) != '#')
+				if (temp != dstp)
 				{
-					isOk = false;
-					throw 6; //code 6 
+					if (Point::get_piece(temp, board) != '#')
+					{
+						isOk = false;
+						throw 6; //code 6 
+					}
 				}
 			}
 		}
@@ -74,10 +80,13 @@ bool Bishop::move(const std::vector<Piece*>& board, const Point& dstp) const
 			{
 				temp.set_y(temp.get_y() - 1);
 				temp.set_x(temp.get_x() + 1);
-				if (Point::get_piece(temp, board) != '#')
+				if (temp != dstp)
 				{
-					isOk = false;
-					throw 6; //code 6 
+					if (Point::get_piece(temp, board) != '#')
+					{
+						isOk = false;
+						throw 6; //code 6 
+					}
 				}
 			}
 		}
@@ -87,10 +96,13 @@ bool Bishop::move(const std::vector<Piece*>& board, const Point& dstp) const
 			{
 				temp.set_y(temp.get_y() - 1);
 				temp.set_x(temp.get_x() - 1);
-				if (Point::get_piece(temp, board) != '#')
+				if (temp != dstp)
 				{
-					isOk = false;
-					throw 6; //code 6 
+					if (Point::get_piece(temp, board) != '#')
+					{
+						isOk = false;
+						throw 6; //code 6 
+					}
 				}
 			}
 		}

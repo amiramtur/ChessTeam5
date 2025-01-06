@@ -55,6 +55,7 @@ int main()
 
 	strcpy_s(msgToGraphics, "rnbkqbnrpppppppp################################PPPPPPPPRNBKQBNR1");
 	p.sendMessageToGraphics(msgToGraphics);
+	std::cout << board.get_board_string() << std::endl;
 	msgFromGraphics = p.getMessageFromGraphics();
 	// game loop
 	while (msgFromGraphics != "quit")
@@ -67,6 +68,7 @@ int main()
 		board_str = (char)code + 48;
 		strcpy_s(msgToGraphics, board_str.c_str());
 		p.sendMessageToGraphics(msgToGraphics);
+		std::cout << board.get_board_string() << std::endl;
 		std::cout << msgToGraphics;
 
 		//turn = board.get_turn();
