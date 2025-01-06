@@ -4,6 +4,10 @@
 #include "Point.h"
 #include "Pipe.h"
 
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
+
 #define BLACK_STR "black"
 #define WHITE_STR "WHITE"
 
@@ -16,6 +20,9 @@
 
  int main()
  {
+	 _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+
+
 	 // variable setting
 	 // c#
 	 srand(time_t(NULL));
@@ -54,23 +61,26 @@
 		 }
 	 }
 
-	 strcpy_s(msgToGraphics, "rnbkqbnrpppppppp################################PPPPPPPPRNBKQBNR1");
-	 p.sendMessageToGraphics(msgToGraphics);
-	 msgFromGraphics = p.getMessageFromGraphics();
-
-	 // game loop
-	 while (msgFromGraphics != "quit")
-	 {
-		 cords1[0] = msgFromGraphics[0];
-		 cords1[1] = msgFromGraphics[1];
-		 cords2[0] = msgFromGraphics[2];
-		 cords2[1] = msgFromGraphics[3];
-		 code = board.move(Point::get_index(cords1), Point::get_index(cords2));
-		 board_str = (char)code + 48;
-		 strcpy_s(msgToGraphics, board_str.c_str());
-		 p.sendMessageToGraphics(msgToGraphics);
-		 std::cout << msgToGraphics;
+	strcpy_s(msgToGraphics, "rnbkqbnrpppppppp################################PPPPPPPPRNBKQBNR1");
+	p.sendMessageToGraphics(msgToGraphics);
+	std::cout << board.get_board_string() << std::endl;
+	msgFromGraphics = p.getMessageFromGraphics();
+	// game loop
+	while (msgFromGraphics != "quit")
+	{
+		cords1[0] = msgFromGraphics[0]; 
+		cords1[1] = msgFromGraphics[1]; 
+		cords2[0] = msgFromGraphics[2];
+		cords2[1] = msgFromGraphics[3];
+		code = board.move(Point::get_index(cords1), Point::get_index(cords2));
+		board_str = (char)code + 48;
+		strcpy_s(msgToGraphics, board_str.c_str());
+		p.sendMessageToGraphics(msgToGraphics);
+		std::cout << board.get_board_string() << std::endl;
+		std::cout << msgToGraphics;
 
 		 msgFromGraphics = p.getMessageFromGraphics();
 	 }
+	_CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_DEBUG);
+	_CrtDumpMemoryLeaks();
  }

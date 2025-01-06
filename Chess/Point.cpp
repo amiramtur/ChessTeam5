@@ -46,7 +46,7 @@ void Point::set_y(const int y)
 
 bool Point::operator!=(const Point& other) const
 {
-	return (other.get_x() != this->_x || other.get_y() != this->_y);
+	return (other.get_x() != this->_x|| other.get_y() != this->_y);
 }
 
 int Point::get_index(const Point& p)
@@ -71,10 +71,12 @@ int Point::get_index(const std::string& p)
 void Point::replace(const Piece& srcp, const Piece& dstp, std::vector<Piece*>& board)
 {
 	int srci = Point::get_index(*srcp.getPoint()), dsti = Point::get_index(*dstp.getPoint()); 
-
+	Point* dstPoint = dstp.getPoint();
+	srcp.getPoint()->set_x(dstPoint->get_x()); 
+	srcp.getPoint()->set_y(dstPoint->get_y());
 	delete board[dsti];
 	board[dsti] = board[srci];
-	board[srci] = new Empty(-1, srcp.getPoint());
+	board[srci] = new Empty(-1, new Point(srci));
 }
 
 Piece* Point::get_piece_class(const Point& p, const std::vector<Piece*>& board)
